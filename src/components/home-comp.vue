@@ -73,7 +73,7 @@ export default {
 
 .main-img-enter-active,
 .main-img-leave-active{
-   transition: all 0.2s;
+   transition: all 0.1s;
 }
 
 .main-img-enter{
