@@ -17,8 +17,13 @@ export default {
    methods: {
       animator() {
          this.add_class = !this.add_class;
-      },
+      }
    },
+   watch: {
+      add_class(){
+         this.$emit('expand-nav', this.add_class);
+      }
+   }
 };
 </script>
 
@@ -33,9 +38,10 @@ export default {
 .bar3 {
    width: 35px;
    height: 5px;
-   background-color: #333;
+   background-color: white;
    margin: 6px 0;
-   transition: 0.4s;
+   transition: 0.3s;
+   border-radius: 2px;
 }
 
 .change .bar1 {
@@ -54,4 +60,5 @@ export default {
    transform: rotate(45deg) translate(-8px, -8px);
    background-color: white;
 }
+
 </style>

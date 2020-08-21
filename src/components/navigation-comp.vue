@@ -47,8 +47,51 @@
       </div>
 
       <div class="hamburger-icon">
-         <hamburger-icon></hamburger-icon>
+         <hamburger-icon @expand-nav="expand_nav($event)"></hamburger-icon>
       </div>
+
+         <transition name='small-slide-opacity'>
+         <div class='nav-small-wrap' v-show='small_nav_show'>
+
+            <transition name='small-slide'>
+            <div class='nav-small' v-show='small_nav_show'>
+               <br>
+
+               <router-link class='login-small' :to="{name: 'Login'}">LOG-IN</router-link>
+
+               <br>
+
+               <router-link :to="{name: 'Plan'}">Plan Your Trip</router-link>
+               <div class='sub-menu'>
+                  <router-link :to="{name: 'Plan'}">COVID-19</router-link>
+                  <router-link :to="{name: 'Plan'}">Visa</router-link>
+                  <router-link :to="{name: 'Plan'}">Essentials</router-link>
+               </div>
+
+               <br>
+
+               <router-link :to="{name: 'Places'}">Places To Go</router-link>
+               <div class='sub-menu'>
+                  <router-link :to="{name: 'Places'}">Island</router-link>
+                  <router-link :to="{name: 'Places'}">Cities</router-link>
+                  <router-link :to="{name: 'Places'}">Attractions</router-link>
+               </div>
+
+               <br>
+
+               <router-link :to="{name: 'Places'}">Learn The Culture</router-link>
+               <div class='sub-menu'>
+                  <router-link :to="{name: 'Places'}">About</router-link>
+                  <router-link :to="{name: 'Places'}">Etiquette</router-link>
+                  <router-link :to="{name: 'Places'}">Foods</router-link>
+               </div>
+               
+            </div>
+            </transition>
+
+         </div>
+         </transition>
+
    </div>
    
 </template>
@@ -61,18 +104,132 @@ export default {
    components: {
       "hamburger-icon": hamburger_icon
    },
+   data(){
+      return {
+         small_nav_show: false
+      }
+   },
    methods: {
       expand(e){
          e.target.childNodes[1].style.display = 'block';
       },
       collapse(e){
          e.target.childNodes[1].style.display = 'none';
+      },
+      expand_nav(e){
+         this.small_nav_show = e;
       }
    }
 };
 </script>
 
 <style scoped>
+
+/****/
+.small-slide-enter-active,
+.small-slide-leave-active{
+   transition: 0.3s;
+}
+
+.small-slide-enter{
+   opacity: 0;
+   transform: translateX(100%);
+}
+
+.small-slide-enter-to{
+   opacity: 1;
+}
+
+.small-slide-leave-to{
+   opacity: 0;
+}
+/****/
+
+/****/
+.small-slide-opacity-enter-active,
+.small-slide-opacity-leave-active{
+   transition: 0.3s;
+}
+
+.small-slide-opacity-enter{
+   opacity: 0;
+}
+
+.small-slide-opacity-enter-to{
+   opacity: 1;
+}
+
+.small-slide-opacity-leave-to{
+   opacity: 0;
+}
+/****/
+
+.login-small{
+   display: block;
+   font-size: 12px;
+   margin-bottom: 10px;
+   color: lightGrey !important;
+   width: 20%;
+   margin: auto;
+}
+.login-small:hover,
+.login-small:active{
+   color: white !important;
+}
+
+.sub-menu{
+   display: block;
+   margin: auto;
+   width: 50%;
+   margin-top: 3px;
+}
+
+.sub-menu a{
+   display: block;
+   text-decoration: none;
+   font-weight: lighter !important;
+   margin: auto;
+   margin: 10px;
+   font-size: 18px;
+   color: lightGrey !important;
+}
+.sub-menu a:hover,
+.sub-menu a:active{
+   color: white !important;
+}
+
+.nav-small{
+   position: absolute;
+   top: 0;
+   left: 20%;
+   width: 80%;
+   height: 100%;
+   background-color: black;
+   font-size: 20px;
+   z-index: 1;
+   overflow: auto;
+}
+
+@media only screen and (max-width: 400px) {
+   .nav-small{
+      width: 100%;
+      left: 0;
+   }
+   
+   .sub-menu{
+      width: 100%
+   }
+}
+
+.nav-small-wrap{
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgb(0, 0, 0, 0.3);
+   box-sizing: border-box;
+}
 
 img{
    position: absolute;
@@ -132,6 +289,8 @@ img{
    position: absolute;
    right: 20px;
    display: none;
+   top: 5px;
+   z-index: 10;
 }
 
 @media only screen and (max-width: 700px) {

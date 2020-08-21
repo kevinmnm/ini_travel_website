@@ -17,16 +17,18 @@
          <div class="arrow-right" @click="next_img()">&#62;</div>
       </div>
 
-      <div class='content-wrapper'>
-         asdfadf<br><br><br>sdfasdf
-      </div>
+      <home-content-comp></home-content-comp>
    </div>
 </template>
 
 <script>
+import home_content_comp from "@/components/home-content-comp.vue"
 
 export default {
    name: "homeComp",
+   components: {
+      "home-content-comp": home_content_comp
+   },
    data(){
       return {
          img_src1: 'front1_2400x1600.jpg',
