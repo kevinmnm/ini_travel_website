@@ -1,7 +1,7 @@
 <template>
 
    <div class="page-wrapper">
-      <div >
+      <div>
          <img src="../assets/logo.png" alt="logo img" />
          <div class="title">Log into Inidream</div>
          <br>
@@ -51,7 +51,7 @@ export default {
    color: darkGrey;
    width: 100px;
    margin: auto;
-   margin-top: 15px;
+   margin-top: 30px;
    width: 50%;
 }
 .cred:hover{
@@ -141,7 +141,7 @@ input:active{
 
 .page-wrapper {
    position: relative;
-   top: 20%;
+   top: 15%;
    width: 80%;
    height: 70%;
    margin: auto;
@@ -177,8 +177,8 @@ input:active{
 img {
    position: relative;
    margin: auto;
-   width: 50px;
-   height: 50px;
+   width: 100px;
+   height: 100px;
    user-select: none;
 }
 </style>
