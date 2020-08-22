@@ -277,7 +277,7 @@ img{
 }
 
 #nav {
-   position: sticky;
+   position: fixed;
    z-index: 5;
    top: 0;
    left: 0;
