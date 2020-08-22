@@ -18,11 +18,14 @@
       </div>
 
       <home-content-comp></home-content-comp>
+
+      <home-footer-comp></home-footer-comp>
    </div>
 </template>
 
 <script>
 import home_content_comp from "@/components/home-content-comp.vue"
+
 
 export default {
    name: "homeComp",
@@ -101,10 +104,11 @@ export default {
    position: absolute;
    font-weight: bold;
    color: white;
-   font-size: 60px;
-   top: calc(50% - 30px);
+   font-size: 90px;
+   top: calc(50% - 45px);
    cursor: pointer;
    opacity: 0.3;
+   text-shadow: 0 0 5px black;
 }
 .arrow-left:hover,
 .arrow-right:hover{
@@ -123,7 +127,7 @@ export default {
    position: absolute;
    display: block;
    bottom: 20px;
-   font-size: 20px;
+   font-size: 35px;
    width: 100px;
    text-align: center;
    letter-spacing: 10px;

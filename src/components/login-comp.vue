@@ -3,8 +3,8 @@
    <div class="page-wrapper">
       <div>
          <img src="../assets/logo.png" alt="logo img" />
-         <div class="title">Log into Inidream</div>
-         <br>
+         <div class="title">Log into <i>Inidream</i></div>
+         <hr><br>
          <div class="flex-wrapper-login">
             <div class="input-field">
                <input type="text" placeholder="Username" />
@@ -74,6 +74,7 @@ export default {
    line-height: 2.9;
    font-weight: bold;
    cursor: pointer;
+   user-select: none;
 }
 
 .alternate div:hover {
@@ -141,7 +142,7 @@ input:active{
 
 .page-wrapper {
    position: relative;
-   top: 15%;
+   top: 7%;
    width: 80%;
    height: 70%;
    margin: auto;
@@ -177,8 +178,8 @@ input:active{
 img {
    position: relative;
    margin: auto;
-   width: 100px;
-   height: 100px;
+   width: 150px;
+   height: 150px;
    user-select: none;
 }
 </style>

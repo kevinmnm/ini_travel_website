@@ -229,6 +229,13 @@ export default {
    height: 100%;
    background-color: rgb(0, 0, 0, 0.3);
    box-sizing: border-box;
+   display: none;
+}
+
+@media only screen and (max-width: 700px) {
+   .nav-small-wrap{
+      display: block;
+   }
 }
 
 img{
@@ -279,6 +286,7 @@ img{
    display: flex;
    flex-direction: row;
    background-image: url('../assets/nav_background.png');
+   box-shadow: 0 4px 2px -2px gray;
 }
 
 /* #nav a.router-link-exact-active {

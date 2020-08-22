@@ -39,12 +39,12 @@ body{
 
 /* width */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: darkGrey;
 }
  
 /* Handle */
