@@ -1,10 +1,17 @@
 <template>
-
    <div class="page-wrapper">
       <div>
          <img src="../assets/logo.png" alt="logo img" />
-         <div class="title">Log into <i>Inidream</i></div>
-         <hr><br>
+         <div class="title">
+            Log into
+            <i>Inidream</i>
+         </div>
+         <div class="title_minor">
+            New?
+            <router-link :to="{name: 'Signup'}">Sign Up Here</router-link>
+         </div>
+         <hr />
+         <br />
          <div class="flex-wrapper-login">
             <div class="input-field">
                <input type="text" placeholder="Username" />
@@ -22,24 +29,37 @@
             </div>
          </div>
       </div>
-      <div class='cred'>
-            <div><u>*Use these credentials*</u></div>
-            <div>Username: <b>iniuser</b></div>
-            <div>Password: <b>inipass</b></div>
+      <div class="cred">
+         <div>
+            <u>*Use these credentials*</u>
+         </div>
+         <div>
+            Username:
+            <b>iniuser</b>
+         </div>
+         <div>
+            Password:
+            <b>inipass</b>
+         </div>
       </div>
    </div>
-
 </template>
 
 <script>
+import * as firebase from "firebase";
+import firebaseConfig from "@/firebase.js"
+firebase.initializeApp(firebaseConfig);
+
 export default {
-   name: "loginComp"
-}
+   name: "loginComp",
+   mounted() {
+      console.log(firebase.auth());
+   }
+};
 </script>
 
 <style scoped>
-
-.seperator{
+.seperator {
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -47,34 +67,36 @@ export default {
    flex-wrap: wrap;
 }
 
-.cred{
+.cred {
    color: darkGrey;
    width: 100px;
    margin: auto;
    margin-top: 30px;
    width: 50%;
 }
-.cred:hover{
+.cred:hover {
    color: black;
 }
 
-.alternate{
+.alternate {
    width: 40%;
    display: flex;
    flex-direction: column;
    justify-content: space-around;
 }
 
-.alternate div{
+.alternate div {
    border: 1px solid darkGrey;
    width: 80%;
    margin: auto;
    height: 20%;
-   font-size: 20px;
+   font-size: 18px;
    line-height: 2.9;
    font-weight: bold;
    cursor: pointer;
    user-select: none;
+   word-wrap: break-word;
+   padding: 2px;
 }
 
 .alternate div:hover {
@@ -82,7 +104,7 @@ export default {
 }
 
 input,
-.submit{
+.submit {
    position: relative;
    display: block;
    width: 90%;
@@ -91,20 +113,20 @@ input,
    border: none;
 }
 
-input{
+input {
    padding: 5px;
    margin-bottom: 1px;
    border-bottom: 1px solid lightGrey !important;
 }
 
 input:focus,
-input:active{
+input:active {
    outline: 0;
    border: none;
    background-color: whiteSmoke;
 }
 
-.submit{
+.submit {
    background-color: whiteSmoke;
    color: lightGrey;
    margin-top: 10px;
@@ -133,6 +155,15 @@ input:active{
    justify-content: center;
 }
 
+.title_minor {
+   position: relative;
+   text-align: center;
+   font-weight: bold;
+   font-size: 18px;
+   text-underline-position: under;
+   margin: 5px;
+}
+
 .title {
    position: relative;
    text-align: center;
@@ -150,27 +181,27 @@ input:active{
 }
 
 @media only screen and (max-width: 700px) {
-  .flex-wrapper-login{
-     flex-direction: column;
-     height: auto;
-     justify-content: center;
-  }
+   .flex-wrapper-login {
+      flex-direction: column;
+      height: auto;
+      justify-content: center;
+   }
 
-  .input-field{
-     width: 80%;
-     margin: auto;
-     margin-bottom: 10px;
-  }
+   .input-field {
+      width: 80%;
+      margin: auto;
+      margin-bottom: 10px;
+   }
 
-  .alternate{
-     width: 80%;
-     margin: auto;
-     margin-top: 5px;
-  }
+   .alternate {
+      width: 80%;
+      margin: auto;
+      margin-top: 5px;
+   }
 }
 
 @media only screen and (max-width: 500px) {
-   .alternate div{
+   .alternate div {
       font-size: 14px;
    }
 }
