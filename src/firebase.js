@@ -32,8 +32,12 @@ export function register_user_func(){
 }
 
 export function signOut_func(){
-   firebase.auth().signOut();
-   alert('signed out');
+   firebase.auth().signOut().then(() => {
+      window.location.reload();
+   }).catch(error => {
+      alert(error);
+   });
+
 }
 
 

@@ -43,7 +43,7 @@
       </div>
 
       <div class="login-wrapper">
-         <router-link :to="{name: 'Login'}" class='login'>LOG-IN</router-link>
+         <router-link :to="{name: 'Login'}" class='login'>{{ logged_or_not }}</router-link>
       </div>
 
       <div class="hamburger-icon">
@@ -57,7 +57,7 @@
             <div class='nav-small' v-show='small_nav_show'>
                <br>
 
-               <router-link class='login-small' :to="{name: 'Login'}">LOG-IN</router-link>
+               <router-link class='login-small' :to="{name: 'Login'}">{{ logged_or_not }}</router-link>
 
                <br>
 
@@ -98,9 +98,9 @@
 
 <script>
 import hamburger_icon from "@/components/hamburger-icon.vue"
-// let firebase = require('firebase');
-// import firebaseConfig from "@/firebase.js";
-// firebase.initializeApp(firebaseConfig);
+let firebase = require('firebase');
+import firebaseConfig from "@/firebase.js";
+firebase.initializeApp(firebaseConfig);
 
 export default {
    name: "navigationComp",
@@ -109,7 +109,8 @@ export default {
    },
    data(){
       return {
-         small_nav_show: false
+         small_nav_show: false,
+         logged_or_not: ''
       }
    },
    methods: {
@@ -122,6 +123,12 @@ export default {
       expand_nav(e){
          this.small_nav_show = e;
       }
+   },
+   created(){
+      firebase.auth().onAuthStateChanged(user => {
+         alert('ss');
+         (user) ? this.logged_or_not = 'Dashboard' : this.logged_or_not = 'LOG-IN';
+      });
    }
 };
 </script>

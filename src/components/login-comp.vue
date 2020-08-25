@@ -12,12 +12,13 @@
             <a class='signup-link' @click.prevent="show_which = 2">Sign Up Here</a>
          </div>
          <hr />
+         <div class='message'>{{ message }}</div>
          <br />
          <div class="flex-wrapper-login">
             <div class="input-field">
                <input type="text" placeholder="Username" v-model='username' @input='allow_submit()'/>
                <input type="passoword" placeholder="Password" v-model='password' @input='allow_submit()' />
-               <div :class="{'submit-disabled': toggle_disable, 'submit': !toggle_disable}">LOG IN</div>
+               <div @click='login()' :class="{'submit-disabled': toggle_disable, 'submit': !toggle_disable}">LOG IN</div>
             </div>
             <div class="seperator">
                <div>OR</div>
@@ -52,9 +53,16 @@
       </signup-comp>
 
       <div class='profile' v-else-if='show_which === 3'>
-         <h2>Dashboard</h2>
-         <div>USER INFO***: {{ logged }}</div> <br><br>
-         <div>DISPLAY NAME***: {{ logged.displayName }}</div>
+         <h2>Profile</h2>
+         <div>{{ logged.photoURL }}</div>
+         <div class="profile-row">
+            <div>Display Name: </div>
+            <div>{{ logged.displayName }}</div>
+         </div>
+         <div class='profile-row'>
+            <div>Email: </div>
+            <div>{{ logged.email }}</div>
+         </div>
          <button @click='signOut()'>Log Out</button>
       </div>
 
@@ -80,12 +88,18 @@ export default {
          username: '',
          password: '',
          toggle_disable: true,
-         logged: null
+         logged: null,
+         message: ''
       }
    },
    methods: {
       signOut: signOut_func,
 
+      login(){
+         firebase.auth().signInWithEmailAndPassword(this.username, this.password).catch( error => {
+            this.message = error;
+         });
+      },
       allow_submit(){
          if (this.username && this.password){
             this.toggle_disable = false;
@@ -111,8 +125,29 @@ export default {
 </script>
 
 <style scoped>
+.message{
+   position: relative;
+   color: red;
+   font-weight: bold;
+   font-size: 15px;
+   height: 17px;
+}
+
+.profile-row div{
+   border: 1px solid orange;
+}
+.profile-row{
+   display: flex;
+   justify-content: center;
+   flex-direction: row;
+   flex-wrap: wrap;
+}
 .profile{
-   margin-top: 500px;
+   margin-top: 30px;
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+   border: 1px solid red;
 }
 .signup-link{
    color: blue;

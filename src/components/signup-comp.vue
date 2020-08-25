@@ -23,8 +23,8 @@
 
 import {register_user_func} from "@/firebase.js"
 let firebase = require('firebase/app');
-import firebaseConfig from "@/firebase.js";
-firebase.initializeApp(firebaseConfig);
+//import firebaseConfig from "@/firebase.js";
+//firebase.initializeApp(firebaseConfig);
 
 export default {
    name: "signupComp",
@@ -63,6 +63,8 @@ export default {
       }
    },
    created(){
+      (!firebase.apps.length) ? firebase.initializeApp : null;
+
       firebase.auth().onAuthStateChanged(user => {
          if (user){
             this.logged = user;
