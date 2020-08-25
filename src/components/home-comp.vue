@@ -19,13 +19,11 @@
 
       <home-content-comp></home-content-comp>
 
-      <home-footer-comp></home-footer-comp>
    </div>
 </template>
 
 <script>
 import home_content_comp from "@/components/home-content-comp.vue"
-
 
 export default {
    name: "homeComp",

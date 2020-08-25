@@ -16,7 +16,6 @@
          <input type='tel' v-model='phone_number' placeholder='Phone' />
          <button class='sbutton' disabled>Subimt</button>
       </form>
-
    </div>
 </template>
 
@@ -68,7 +67,7 @@ export default {
          if (user){
             this.logged = user;
             this.$emit('logged-in', user);
-            alert('logged in');
+            return
          } else {
             this.logged = null;
             this.$emit('logged-in', null);

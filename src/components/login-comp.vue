@@ -1,7 +1,7 @@
 <template>
    <div class="page-wrapper">
 
-      <div v-if="show_which === '1'">
+      <div v-if='show_which === 1'>
          <img src="../assets/logo.png" alt="logo img" />
          <div class="title">
             Log into
@@ -9,7 +9,7 @@
          </div>
          <div class="title_minor">
             New?
-            <a class='signup-link' @click="show_which = '2'">Sign Up Here</a>
+            <a class='signup-link' @click.prevent="show_which = 2">Sign Up Here</a>
          </div>
          <hr />
          <br />
@@ -46,18 +46,17 @@
       </div> -->
 
       <signup-comp 
-      v-else-if="show_which === '2'" 
-      @back-button="show_which = '1'"
-      @logged-in='loggedin_func($event)'>
+      v-else-if="show_which === 2" 
+      @back-button="show_which === 1" 
+      @logged-in="loggedin_func($event)">
       </signup-comp>
 
-      <div class='profile' v-else-if="show_which === '3'">
+      <div class='profile' v-else-if='show_which === 3'>
          <h2>Dashboard</h2>
          <div>USER INFO***: {{ logged }}</div> <br><br>
          <div>DISPLAY NAME***: {{ logged.displayName }}</div>
          <button @click='signOut()'>Log Out</button>
       </div>
-
 
    </div>
 </template>
@@ -77,11 +76,11 @@ export default {
    },
    data(){
       return {
-         show_which: '1',
+         show_which: 1,
          username: '',
          password: '',
          toggle_disable: true,
-         logged_user: null
+         logged: null
       }
    },
    methods: {
@@ -95,14 +94,17 @@ export default {
          }
       },
       loggedin_func(e){
-         this.logged_user = e;
-         e ? this.show_which = '3' : this.show_which = '1';
+         this.logged = e;
+         if (e){
+            this.show_which = 3;
+         }
       }
    },
    created(){
       firebase.auth().onAuthStateChanged( user => {
-         alert(user);
-         this.loggedin_func;
+         if (user) {
+            this.show_which = 2;
+         }
       });
    }
 };
