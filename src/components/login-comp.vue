@@ -1,6 +1,6 @@
 <template>
    <div class="page-wrapper">
-      <div>
+      <div v-show="!show_signup">
          <img src="../assets/logo.png" alt="logo img" />
          <div class="title">
             Log into
@@ -8,15 +8,15 @@
          </div>
          <div class="title_minor">
             New?
-            <router-link :to="{name: 'Signup'}">Sign Up Here</router-link>
+            <a class='signup-link' @click="show_signup = true">Sign Up Here</a>
          </div>
          <hr />
          <br />
          <div class="flex-wrapper-login">
             <div class="input-field">
-               <input type="text" placeholder="Username" />
-               <input type="passoword" placeholder="Password" />
-               <div class="submit">LOG IN</div>
+               <input type="text" placeholder="Username" v-model='username' @input='allow_submit()'/>
+               <input type="passoword" placeholder="Password" v-model='password' @input='allow_submit()' />
+               <div :class="{'submit-disabled': toggle_disable, 'submit': !toggle_disable}">LOG IN</div>
             </div>
             <div class="seperator">
                <div>OR</div>
@@ -29,7 +29,7 @@
             </div>
          </div>
       </div>
-      <div class="cred">
+      <div class="cred" v-show="!show_signup">
          <div>
             <u>*Use these credentials*</u>
          </div>
@@ -42,23 +42,52 @@
             <b>inipass</b>
          </div>
       </div>
+
+      <signup-comp v-show="show_signup" @back-button='show_signup = false'></signup-comp>
+
    </div>
 </template>
 
 <script>
-import * as firebase from "firebase";
-import firebaseConfig from "@/firebase.js"
-firebase.initializeApp(firebaseConfig);
+// require('firebase/app');
+// import firebaseConfig from "@/firebase.js";
+// firebase.initializeApp(firebaseConfig);
+import signup_comp from "@/components/signup-comp.vue"
 
 export default {
    name: "loginComp",
-   mounted() {
-      console.log(firebase.auth());
+   components: {
+      "signup-comp": signup_comp
+   },
+   data(){
+      return {
+         show_signup: false,
+         username: '',
+         password: '',
+         toggle_disable: true
+      }
+   },
+   methods: {
+      allow_submit(){
+         if (this.username && this.password){
+            this.toggle_disable = false;
+         } else {
+            this.toggle_disable = true;
+         }
+      }
    }
 };
 </script>
 
 <style scoped>
+.signup-link{
+   color: blue;
+   cursor: pointer;
+}
+.signup-link:hover{
+   color: brown;
+}
+
 .seperator {
    display: flex;
    flex-direction: column;
@@ -100,10 +129,11 @@ export default {
 }
 
 .alternate div:hover {
-   background-color: darkGrey;
+   background-color: whiteSmoke;
 }
 
 input,
+.submit-disabled,
 .submit {
    position: relative;
    display: block;
@@ -126,7 +156,18 @@ input:active {
    background-color: whiteSmoke;
 }
 
-.submit {
+.submit{
+   /* background-color: #eedfc9; */
+   background: white;
+   box-shadow: 0 0 3px black;
+   color: #101010;
+   margin-top: 10px;
+   padding: 5px;
+   user-select: none;
+   cursor: pointer;
+}
+
+.submit-disabled {
    background-color: whiteSmoke;
    color: lightGrey;
    margin-top: 10px;
