@@ -205,12 +205,11 @@ export default {
    margin: auto;
    height: 20%;
    font-size: 18px;
-   line-height: 2.9;
    font-weight: bold;
    cursor: pointer;
    user-select: none;
    word-wrap: break-word;
-   padding: 2px;
+   padding: 10px;
 }
 
 .alternate div:hover {
