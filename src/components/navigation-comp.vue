@@ -79,11 +79,11 @@
 
                <br>
 
-               <router-link :to="{name: 'Places'}">Learn The Culture</router-link>
+               <router-link :to="{name: 'Culture'}">Learn The Culture</router-link>
                <div class='sub-menu'>
-                  <router-link :to="{name: 'Places'}">About</router-link>
-                  <router-link :to="{name: 'Places'}">Etiquette</router-link>
-                  <router-link :to="{name: 'Places'}">Foods</router-link>
+                  <router-link :to="{name: 'Culture'}">About</router-link>
+                  <router-link :to="{name: 'Culture'}">Etiquette</router-link>
+                  <router-link :to="{name: 'Culture'}">Foods</router-link>
                </div>
                
             </div>
@@ -91,7 +91,6 @@
 
          </div>
          </transition>
-
    </div>
    
 </template>
@@ -126,7 +125,6 @@ export default {
    },
    created(){
       firebase.auth().onAuthStateChanged(user => {
-         alert('ss');
          (user) ? this.logged_or_not = 'Dashboard' : this.logged_or_not = 'LOG-IN';
       });
    }

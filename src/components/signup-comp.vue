@@ -93,6 +93,7 @@ export default {
 
 .back:hover{
    color: black;
+   font-weight: bold;
 }
 
 button{

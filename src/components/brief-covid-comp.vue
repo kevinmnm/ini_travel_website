@@ -1,7 +1,7 @@
 <template>
   <div class='brief-covid'>
 
-      <div class='titler'>Indonesia Travel Advisory From <a :href='url'>Travel.State.Gov</a></div>
+      <div class='titler'><u>Indonesia Travel Advisory</u></div>
       <div class='alerter'>Do Not Travel</div>
       <div class='article'>
          <adv-text></adv-text>
@@ -16,11 +16,6 @@ export default {
    name: "briefCovidComp",
    components: {
       "adv-text": advisory_text
-   },
-   data(){
-      return {
-         url: 'https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/indonesia-travel-advisory.html'
-      }
    }
 }
 </script>
@@ -31,11 +26,14 @@ export default {
    font-size: 20px;
    padding: 20px;
    text-align: left;
+   box-shadow: 0 0 5px red;
 }
 
 .titler{
-   font-size: 4vw;
+   font-size: 3.5vw;
    font-weight: bold;
+   margin-bottom: 10px;
+   text-underline-position: under;
 }
 
 .alerter{
@@ -43,7 +41,8 @@ export default {
    width: 100%;
    background: red;
    color: white;
-   font-size: 4vw;
+   font-size: 3.2vw;
+   border-radius: 2px;
 }
 
 @media only screen and (max-width: 700px) {
@@ -56,7 +55,7 @@ export default {
    display: block;
    width: 80%;
    margin: auto;
-   margin-top: 60px;
+   margin-top: 65px;
    margin-bottom: 20px;
 }
 </style>

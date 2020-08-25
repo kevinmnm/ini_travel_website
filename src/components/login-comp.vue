@@ -51,18 +51,37 @@
       @logged-in="loggedin_func($event)">
       </signup-comp>
 
+
+<!---logged.displayName, logged.photoURL, logged.email, logged.emailVerified, logged.uid--->
       <div class='profile' v-else-if='show_which === 3'>
-         <h2>Profile</h2>
-         <div>{{ logged.photoURL }}</div>
+         <router-link class='backb' :to="{name: 'Home'}">&#8630; Back to Home</router-link>
+         <h1>{{ display_name || user_email }}</h1>
+
+         <h2><u>Profile</u></h2>
+         <img class="profile-img" :src="logged.photoURL" alt="Profile img" /> <br>
+
          <div class="profile-row">
             <div>Display Name: </div>
             <div>{{ logged.displayName }}</div>
          </div>
+
          <div class='profile-row'>
             <div>Email: </div>
             <div>{{ logged.email }}</div>
          </div>
-         <button @click='signOut()'>Log Out</button>
+
+         <div class='profile-row'>
+            <div>Email Verified: </div>
+            <div>{{ logged.emailVerified ? 'Yes' : 'No' }}</div>
+         </div>
+
+         <div class='profile-row'>
+            <div>Unique ID: </div>
+            <div>{{ logged.uid }}</div>
+         </div>
+
+         <button class='dash-logout' @click='signOut()'>Log Out</button>
+
       </div>
 
    </div>
@@ -88,7 +107,10 @@ export default {
          password: '',
          toggle_disable: true,
          logged: null,
-         message: ''
+         message: '',
+         display_name: '',
+         user_email: '',
+         user_info: []
       }
    },
    methods: {
@@ -106,15 +128,20 @@ export default {
             provider = new firebase.auth.TwitterAuthProvider();
          }  
 
-         firebase.auth().signInWithPopup(provider).then(() => {
-            
-         })
+         firebase.auth().signInWithPopup(provider).then((user) => {
+            this.display_name = user.displayName;
+            this.user_email = user.email;
+         }).catch(error => {
+            this.message = error;
+         });
       },
 
       login(){
-         firebase.auth().signInWithEmailAndPassword(this.username, this.password).catch( error => {
-            this.message = error;
-         });
+         if (!this.toggle_disable){
+            firebase.auth().signInWithEmailAndPassword(this.username, this.password).catch( error => {
+               this.message = error;
+            });
+         }
       },
       allow_submit(){
          if (this.username && this.password){
@@ -141,6 +168,45 @@ export default {
 </script>
 
 <style scoped>
+
+.dash-logout{
+   position: relative;
+   width: 150px;
+   padding: 5px;
+   font-weight: bold;
+   background: black;
+   color: white;
+   border-radius: 5px;
+   box-shadow: 0 0 2px grey;
+   margin: auto;
+   margin-top: 20px;
+   font-size: 20px;
+   cursor: pointer;
+   outline: none;
+   border: none;
+}
+.dash-logout:hover{
+   background:brown;
+   color: white;
+}
+
+.backb{
+   position: absolute;
+   top: 0;
+   left: 0;
+   cursor: pointer;
+   font-size: 15px;
+   color: darkGrey;
+   z-index: 1;
+   font-family: 'Nunito', sans-serif;
+   text-decoration: none;
+}
+
+.backb:hover{
+   color: black;
+   font-weight: bold;
+}
+
 .message{
    position: relative;
    color: red;
@@ -151,19 +217,49 @@ export default {
 
 .profile-row div{
    border: 1px solid orange;
+   width: 45%;
+   box-sizing: border-box;
+   padding: 2px;
+   font-size: 20px;
+   word-wrap: break-word;
 }
+
+@media only screen and (max-width: 1000px) {
+   .profile-row div{
+      font-size: 15px;
+   }
+}
+
+@media only screen and (max-width: 600px) {
+   .profile-row div{
+      font-size: 12px;
+   }
+}
+
+.profile-row div:nth-child(even){
+   text-align: left;
+   padding-left: 10px;
+}
+
+.profile-row div:nth-child(odd){
+   text-align: right;
+   padding-right: 10px;
+   font-weight: bold;
+}
+
 .profile-row{
+   position: relative;
    display: flex;
    justify-content: center;
    flex-direction: row;
    flex-wrap: wrap;
+   width: 100%;
 }
 .profile{
    margin-top: 30px;
    display: flex;
    flex-direction: column;
    text-align: center;
-   border: 1px solid red;
 }
 .signup-link{
    color: blue;
@@ -285,7 +381,6 @@ input:active {
    text-align: center;
    font-weight: bold;
    font-size: 18px;
-   text-underline-position: under;
    margin: 5px;
 }
 
@@ -303,6 +398,7 @@ input:active {
    height: 70%;
    margin: auto;
    font-family: "Nunito", sans-serif;
+   text-underline-position: under;
 }
 
 @media only screen and (max-width: 700px) {
@@ -338,4 +434,8 @@ img {
    height: 150px;
    user-select: none;
 }
+/* .profile-img{
+   width: auto;
+   height: auto;
+} */
 </style>

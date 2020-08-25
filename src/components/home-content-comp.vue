@@ -42,7 +42,7 @@ export default {
    width: 80%;
    margin: auto;
    justify-content: space-around;
-   margin-top: 20px;
+   margin-top: 65px;
 }
 
 .flex-wrap a {
