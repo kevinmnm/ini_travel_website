@@ -24,10 +24,9 @@
                <div>OR</div>
             </div>
             <div class="alternate">
-               <div>Login with Google</div>
-               <div>Login with Apple</div>
-               <div>Login with Facebook</div>
-               <div>Login with Twitter</div>
+               <div @click="third_provider($event)">Login with Google</div>
+               <div @click="third_provider($event)">Login with Facebook</div>
+               <div @click="third_provider($event)">Login with Twitter</div>
             </div>
          </div>
       </div>
@@ -94,6 +93,23 @@ export default {
    },
    methods: {
       signOut: signOut_func,
+
+      third_provider(e){
+         let eti = e.target.innerHTML;
+         let provider;
+
+         if (eti.includes('Google')){
+            provider = new firebase.auth.GoogleAuthProvider();
+         } else if (eti.includes('Facebook')){
+            provider = new firebase.auth.FacebookAuthProvider();
+         } else if (eti.includes('Twitter')){
+            provider = new firebase.auth.TwitterAuthProvider();
+         }  
+
+         firebase.auth().signInWithPopup(provider).then(() => {
+            
+         })
+      },
 
       login(){
          firebase.auth().signInWithEmailAndPassword(this.username, this.password).catch( error => {
