@@ -47,7 +47,7 @@
 
       <signup-comp 
       v-else-if="show_which === 2" 
-      @back-button="show_which === 1" 
+      @back-button="show_which = 1" 
       @logged-in="loggedin_func($event)">
       </signup-comp>
 
