@@ -68,7 +68,7 @@ export default {
          if (user){
             this.logged = user;
             this.$emit('logged-in', user);
-            alert('sdf');
+            alert('logged in');
          } else {
             this.logged = null;
             this.$emit('logged-in', null);
