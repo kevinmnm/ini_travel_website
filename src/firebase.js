@@ -1,5 +1,7 @@
 
 
+let firebase = require('firebase');
+
 let firebaseConfig = {
    apiKey: "AIzaSyAw4B7kCH72jPUdK2vO4leJCHtLAcb9aWs",
    authDomain: "ini-dream.firebaseapp.com",
@@ -11,7 +13,28 @@ let firebaseConfig = {
    measurementId: "G-FW9SZXDE85",
 };
 
+/*************************/
+/*Goes to signup-comp.vue*/
+/*************************/
+
+export function register_user_func(){
+   firebase.auth().createUserWithEmailAndPassword(this.new_email, this.new_pw).then( result => {
+      this.logged = result;
+
+      if (this.display_id){
+         result.user.updateProfile({
+            displayName: this.display_id
+         });
+      }
+   }).catch( error => {
+      alert(error);
+   });
+}
+
+export function signOut_func(){
+   firebase.auth().signOut();
+   alert('signed out');
+}
 
 
-
-export default firebaseConfig
+export default firebaseConfig;

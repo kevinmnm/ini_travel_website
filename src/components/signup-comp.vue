@@ -2,10 +2,7 @@
    <div class="page-wrap">
       <div class='back' @click='back()'>&#8630; Back to Log-In</div>
       <img src="../assets/logo.png" alt="logo img" />
-      <div class="title">
-         Sign Up For
-         <i>Inidream</i>
-      </div>
+      <div class="title" v-html='title'></div>
       <form class="form" @submit.prevent="register_user()">
          <input @input='enable()' type='email' v-model='new_email' placeholder='Email' required />
          <input @input='enable()' type='password' v-model='new_pw' placeholder='Password' required />
@@ -19,16 +16,14 @@
          <input type='tel' v-model='phone_number' placeholder='Phone' />
          <button class='sbutton' disabled>Subimt</button>
       </form>
-      <div>
-      <div>USER INFO***: {{ logged_user.user }}</div> <br><br>
-      <div>DISPLAY NAME***: {{ logged_user.user.displayName }}</div>
-      <button @click='signOut()'>Log Out</button>
-      </div>
+
    </div>
 </template>
 
 <script>
-const firebase = require('firebase');
+
+import {register_user_func} from "@/firebase.js"
+let firebase = require('firebase/app');
 import firebaseConfig from "@/firebase.js";
 firebase.initializeApp(firebaseConfig);
 
@@ -36,6 +31,7 @@ export default {
    name: "signupComp",
    data(){
       return {
+         title: 'Sign Up For <i>Inidream</i>',
          new_email: '',
          new_pw: '',
          new_pw_match: '',
@@ -44,29 +40,11 @@ export default {
          last_name: '',
          phone_number: null,
          empty_counter: [],
-         logged_user: null
+         logged: null
       }
    },
    methods: {
-      register_user(){
-         firebase.auth().createUserWithEmailAndPassword(this.new_email, this.new_pw).then( result => {
-            this.logged_user = result;
-
-            if (this.display_id){
-               result.user.updateProfile({
-                  displayName: this.display_id
-               });
-            }
-         }).catch( error => {
-            alert(error);
-         });
-      },
-      signOut(){
-         firebase.auth().signOut();
-         alert('signed out');
-         //this.logged_user = null;
-      },
-
+      register_user: register_user_func,
 
       back(){
          this.$emit('back-button');
@@ -86,9 +64,16 @@ export default {
       }
    },
    created(){
-      // firebase.auth().onAuthStateChanged(user => {
-      //    user ? this.logged_user = user : this.logged_user = null;
-      // })
+      firebase.auth().onAuthStateChanged(user => {
+         if (user){
+            this.logged = user;
+            this.$emit('logged-in', user);
+            alert('sdf');
+         } else {
+            this.logged = null;
+            this.$emit('logged-in', null);
+         }
+      })
    }
 };
 </script>

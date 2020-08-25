@@ -98,6 +98,9 @@
 
 <script>
 import hamburger_icon from "@/components/hamburger-icon.vue"
+// let firebase = require('firebase');
+// import firebaseConfig from "@/firebase.js";
+// firebase.initializeApp(firebaseConfig);
 
 export default {
    name: "navigationComp",

@@ -1,6 +1,7 @@
 <template>
    <div class="page-wrapper">
-      <div v-show="!show_signup">
+
+      <div v-if="show_which === 1">
          <img src="../assets/logo.png" alt="logo img" />
          <div class="title">
             Log into
@@ -8,7 +9,7 @@
          </div>
          <div class="title_minor">
             New?
-            <a class='signup-link' @click="show_signup = true">Sign Up Here</a>
+            <a class='signup-link' @click="show_which = 2">Sign Up Here</a>
          </div>
          <hr />
          <br />
@@ -29,7 +30,8 @@
             </div>
          </div>
       </div>
-      <div class="cred" v-show="!show_signup">
+
+      <!-- <div class="cred" v-show="!show_signup">
          <div>
             <u>*Use these credentials*</u>
          </div>
@@ -41,9 +43,21 @@
             Password:
             <b>inipass</b>
          </div>
+      </div> -->
+
+      <signup-comp 
+      v-else-if="show_which === 2" 
+      @back-button='show_which = 1'
+      @logged-in='loggedin_func($event)'>
+      </signup-comp>
+
+      <div class='profile' v-else-if='show_which === 3'>
+         <h2>Dashboard</h2>
+         <div>USER INFO***: {{ logged }}</div> <br><br>
+         <div>DISPLAY NAME***: {{ logged.displayName }}</div>
+         <button @click='signOut()'>Log Out</button>
       </div>
 
-      <signup-comp v-show="show_signup" @back-button='show_signup = false'></signup-comp>
 
    </div>
 </template>
@@ -52,6 +66,7 @@
 // require('firebase/app');
 // import firebaseConfig from "@/firebase.js";
 // firebase.initializeApp(firebaseConfig);
+import {signOut_func} from "@/firebase.js"
 import signup_comp from "@/components/signup-comp.vue"
 
 export default {
@@ -61,25 +76,35 @@ export default {
    },
    data(){
       return {
-         show_signup: false,
+         show_which: 1,
          username: '',
          password: '',
-         toggle_disable: true
+         toggle_disable: true,
+         logged_user: null
       }
    },
    methods: {
+      signOut: signOut_func,
+
       allow_submit(){
          if (this.username && this.password){
             this.toggle_disable = false;
          } else {
             this.toggle_disable = true;
          }
+      },
+      loggedin_func(e){
+         this.logged_user = e;
+         e ? this.show_which = 3 : this.show_which = 1;
       }
    }
 };
 </script>
 
 <style scoped>
+.profile{
+   margin-top: 500px;
+}
 .signup-link{
    color: blue;
    cursor: pointer;
@@ -96,7 +121,7 @@ export default {
    flex-wrap: wrap;
 }
 
-.cred {
+/* .cred {
    color: darkGrey;
    width: 100px;
    margin: auto;
@@ -105,7 +130,7 @@ export default {
 }
 .cred:hover {
    color: black;
-}
+} */
 
 .alternate {
    width: 40%;
