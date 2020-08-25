@@ -29,14 +29,19 @@ const routes = [
    //    component: () => import(/* webpackChunkName: "signup" */ '../views/Signup.vue')
    // },
    {
-      path:'/places',
+      path: '/places',
       name: 'Places',
       compnents: () => import(/* webpackChunkName: "places" */ '../views/Places.vue')
    },
    {
-      path:'/culture',
+      path: '/culture',
       name: 'Culture',
       compnents: () => import(/* webpackChunkName: "culture" */ '../views/Culture.vue')
+   },
+   {
+      path: '/policy',
+      name: 'Policy',
+      compnents: () => import(/* webpackChunkName: "policy" */ '../views/Policy.vue')
    }
 ]
 

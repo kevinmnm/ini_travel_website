@@ -7,9 +7,9 @@
          <i>Inidream</i>
       </div>
       <form class="form" @submit.prevent="register_user()">
-         <input type='text' v-model='new_email' placeholder='Email' required />
-         <input type='password' v-model='new_pw' placeholder='Password' required />
-         <input type='password' v-model='new_pw_match' placeholder='Re-type Password' required />
+         <input @input='enable()' type='email' v-model='new_email' placeholder='Email' required />
+         <input @input='enable()' type='password' v-model='new_pw' placeholder='Password' required />
+         <input @input='enable()' type='password' v-model='new_pw_match' placeholder='Re-type Password' required />
          <br>
          <input type='text' v-model='display_id' placeholder='Display ID' />
          <div class='row-view'>
@@ -17,8 +17,13 @@
             <input type='text' v-model='last_name' placeholder="Last Name" />
          </div>
          <input type='tel' v-model='phone_number' placeholder='Phone' />
-         <button disabled>Subimt</button>
+         <button class='sbutton' disabled>Subimt</button>
       </form>
+      <div>
+      <div>USER INFO***: {{ logged_user.user }}</div> <br><br>
+      <div>DISPLAY NAME***: {{ logged_user.user.displayName }}</div>
+      <button @click='signOut()'>Log Out</button>
+      </div>
    </div>
 </template>
 
@@ -37,16 +42,53 @@ export default {
          display_id: '',
          first_name: '',
          last_name: '',
-         phone_number: null
+         phone_number: null,
+         empty_counter: [],
+         logged_user: null
       }
    },
    methods: {
       register_user(){
-         firebase.auth().createUserWithEmailAndPassword(this.new_email, this.new_pw);
+         firebase.auth().createUserWithEmailAndPassword(this.new_email, this.new_pw).then( result => {
+            this.logged_user = result;
+
+            if (this.display_id){
+               result.user.updateProfile({
+                  displayName: this.display_id
+               });
+            }
+         }).catch( error => {
+            alert(error);
+         });
       },
+      signOut(){
+         firebase.auth().signOut();
+         alert('signed out');
+         //this.logged_user = null;
+      },
+
+
       back(){
          this.$emit('back-button');
+      },
+      enable(){
+         let sbutton = document.querySelector('.sbutton');
+         let required = document.querySelectorAll('[required]');
+         this.empty_counter = [];
+         for (let i=0; i<required.length; i++){
+            required[i].value ? this.empty_counter.push('1') : null;
+         }
+         if (this.empty_counter.length === required.length){
+            sbutton.disabled = false;
+         } else {
+            sbutton.disabled = true;
+         }
       }
+   },
+   created(){
+      // firebase.auth().onAuthStateChanged(user => {
+      //    user ? this.logged_user = user : this.logged_user = null;
+      // })
    }
 };
 </script>

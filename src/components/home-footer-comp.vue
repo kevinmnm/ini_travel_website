@@ -4,11 +4,9 @@
          <img :src="require('../assets/logo.png')" alt="Footer logo img" /> INIDREAM
       </div>
       <div class='footer-credit'>
-         <router-link>Cookie Policy</router-link> |
-         <router-link>Privacy Policy</router-link> |
-         <router-link>Terms and Conditions</router-link> |
-         <router-link>Contact Us</router-link>
-
+         <router-link :to="{name: 'Policy'}">Privacy Policy</router-link> |
+         <router-link :to="{name: 'Policy'}">Terms and Conditions</router-link> |
+         <router-link :to="{name: 'Policy'}">Contact Us</router-link>
       </div>
    </div>
 </template>
@@ -19,7 +17,18 @@ export default {};
 
 <style scoped>
 
-.footer-credit{color: white !important;}
+.footer-credit a{
+   color: lightGrey;
+   text-underline-position: under;
+}
+.footer-credit a:hover{
+   color: white;
+}
+
+.footer-credit{
+   color: white !important;
+   margin-top: 10px;
+}
 
 .footer{
    position: relative;
@@ -29,6 +38,8 @@ export default {};
    height: 100px;
    background: black;
    color: white;
+   padding-top: 10px;
+   user-select: none;
 }
 
 img{
