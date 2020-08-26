@@ -1,8 +1,8 @@
 <template>
    <div class='policy-page'>
-      <policy-comp></policy-comp>
-      <terms-comp></terms-comp>
-      <contact-us-comp></contact-us-comp>
+      <policy-comp id='privacy_section'></policy-comp>
+      <terms-comp id='terms_section'></terms-comp>
+      <contact-us-comp id='contact_section'></contact-us-comp>
    </div>
 </template>
 

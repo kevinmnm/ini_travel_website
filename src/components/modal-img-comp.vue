@@ -108,9 +108,9 @@ export default {
 }
 .modal-img-wrap{
    position: relative;
-   margin-top: 65px;
    margin: auto;
-   width: 80%;
+   margin-top: 65px;
+   width: 85%;
    box-sizing: border-box;
    user-select: none;
 }

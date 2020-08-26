@@ -4,9 +4,9 @@
          <img :src="require('../assets/logo.png')" alt="Footer logo img" /> INIDREAM
       </div>
       <div class='footer-credit'>
-         <router-link :to="{name: 'Policy', params: {id: 'privacy'}}">Privacy Policy</router-link> |
-         <router-link :to="{name: 'Policy', params: {id: 'terms'}}">Terms and Conditions</router-link> |
-         <router-link :to="{name: 'Policy', params: {id: 'contact'}}">Contact Us</router-link>
+         <router-link :to="{name: 'Policy', params: {id: 'privacy'}, hash: '#privacy_section'}">Privacy Policy</router-link> |
+         <router-link :to="{name: 'Policy', params: {id: 'terms'}, hash: '#terms_section'}">Terms and Conditions</router-link> |
+         <router-link :to="{name: 'Policy', params: {id: 'contact'}, hash: 'contact_section'}">Contact Us</router-link>
 
       </div>
    </div>
