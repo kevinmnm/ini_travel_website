@@ -291,6 +291,7 @@ img{
    font-family: "Nunito", sans-serif !important;
    font-family: "Avenir", Helvetica, Arial, sans-serif;
 }
+.login:hover{color:lightGrey !important;}
 
 #nav {
    position: fixed;
@@ -338,19 +339,19 @@ img{
 }
 
 #nav .expander a{
-   color: black;
+   color: #505050;
    display: block;
    text-decoration-color: transparent !important;
 }
 
 #nav .expander a:hover{
    background-color: lightGrey;
+   color: black;
 }
 
 .expander{
    background-color: white;
-   border-radius: 1px;
-   box-shadow: 0 0 5px brown;
+   box-shadow: 0 0 8px black;
    display: none;
 }
 

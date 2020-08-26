@@ -74,7 +74,7 @@ export default {
 }
 .imgs:hover{
    transform: scale(1.1);
-   box-shadow: 0 0 7px black;
+   box-shadow: 0 0 10px black;
 }
 .img-wrap{
    position: relative;
