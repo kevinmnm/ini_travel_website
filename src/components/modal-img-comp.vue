@@ -1,10 +1,11 @@
 <template>
   <div class='modal-img-wrap'>
       <div class='img-flex'>
-         <div :class="{'img-wrap': !zoom, 'zoom-in': zoom}" v-for="all in imgs" :key='all.file' @click="zoomer($event)">
+         <div class='img-wrap' @click.self="zoom_out($event)" v-for="all in imgs" :key='all.file'>
             
             <img 
-            :class="{'imgs': !zoom, 'zoom-in-img': zoom}" 
+            @click.self="zoom_in($event)" 
+            class='imgs' 
             :src="require('@/assets/' + all.file)" 
             alt='modal img' 
             draggable='false' 
@@ -38,17 +39,23 @@ export default {
    name: "modalImgComp",
    data(){
       return{
-         imgs: img_list,
-         zoom: false
+         imgs: img_list
       }
    },
    methods: {
-      zoomer(e){
-         if (e.target.classList.contains('zoom-in')){
-            this.zoom = false;
-         } else {
-            this.zoom = true;
-         }
+      zoom_in(e){ //Applying to img
+         e.target.classList.add('zoom-in-img');
+         e.target.parentNode.classList.add('zoom-in');
+         e.target.classList.remove('imgs');
+         e.target.parentNode.classList.remove('img-wrap');
+         document.body.style.overflow = 'hidden';
+      },
+      zoom_out(e){ //Applying to img-wrap
+         e.target.classList.add('img-wrap');
+         e.target.childNodes[0].classList.add('imgs');
+         e.target.classList.remove('zoom-in');
+         e.target.childNodes[0].classList.remove('zoom-in-img');
+         document.body.style.overflow = 'auto';
       }
    }
 }
@@ -74,6 +81,24 @@ export default {
    height: 240px;
    width: 175px;
 }
+
+@media only screen and (max-width: 500px) {
+   .img-wrap{
+      position: relative;
+      width: 90%;
+      border: 1px solid green;
+      text-align: center;
+   }
+   .imgs{
+      position: relative;
+      left: 0;
+      top: 0;
+      margin: auto;
+      width: 100%;
+      object-fit: cover;
+   }
+}
+
 .img-flex{
    display: flex;
    flex-direction: row;
@@ -91,13 +116,13 @@ export default {
 }
 
 .zoom-in{
-   position: fixed !important;
-   z-index: 5 !important;
+   position: fixed;
+   z-index: 5;
    top: 0;
    left: 0;
    height: 100%;
    width: 100%;
-   background-color: rgb(0,0,0,0.1);
+   background-color: rgb(0,0,0,0.7);
    cursor: zoom-out;
 }
 .zoom-in-img{
@@ -107,14 +132,16 @@ export default {
    cursor: default;
    height: 90%;
    top: 5%;
-   object-fit: cover;
+   object-fit: contain;
    /* width: 620px;
    height: 877px; */
-   
 }
 
-@media only screen and (max-width: 700px) {
-
+@media only screen and (max-width: 500px) {
+   .zoom-in-img{
+      width: 90%;
+      height: 90%;
+   }
 }
 
 </style>
