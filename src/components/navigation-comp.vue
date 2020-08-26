@@ -54,7 +54,7 @@
          <div class='nav-small-wrap' v-show='small_nav_show'>
 
             <transition name='small-slide'>
-            <div class='nav-small' v-show='small_nav_show'>
+            <div class='nav-small' v-show='small_nav_show' @click='create_event($event)'>
                <br>
 
                <router-link class='login-small' :to="{name: 'Login'}">{{ logged_or_not }}</router-link>
@@ -124,6 +124,11 @@ export default {
       },
       expand_nav(e){
          this.small_nav_show = e;
+      },
+      create_event(e){
+         if (e.target.nodeName === 'A'){
+            document.querySelector('.change').click();
+         }
       }
    },
    created(){

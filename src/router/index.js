@@ -47,9 +47,11 @@ const router = new VueRouter({
          let position = {};
          if (to.hash){
             position.selector = to.hash;
+            position.offset = { y: 60 };
             if (document.querySelector(to.hash)){
                return position
             }
+            return false
          }
       }
    },
