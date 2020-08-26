@@ -1,6 +1,5 @@
 <template>
   <div class='brief-covid'>
-
       <div class='titler'><u>Indonesia Travel Advisory</u></div>
       <div class='alerter'>Do Not Travel</div>
       <div class='article'>

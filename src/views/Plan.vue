@@ -1,10 +1,15 @@
 <template> 
-   <div><br><br><br><br><br>plan</div>
+   <plan-comp></plan-comp>
 </template>
 
 <script>
-export default {
+import plan_comp from "@/components/plan-comp.vue"
 
+export default {
+   name: "PlanPageComp",
+   components: {
+      "plan-comp": plan_comp
+   }
 }
 </script>
 

@@ -2,7 +2,7 @@
    <div id="app">
       <navigation-comp></navigation-comp>
 
-      <router-view :key="$route.path" />
+      <router-view />
    </div>
 </template>
 

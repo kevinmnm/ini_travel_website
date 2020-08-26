@@ -4,7 +4,7 @@
          <router-link :to="{name: 'Plan'}">
             <img :src="require('@/assets/reader.svg')" alt="reader" />
             Plan Your Trip
-            </router-link>
+         </router-link>
          <router-link :to="{name: 'Places'}">
             <img :src="require('@/assets/umbrella.svg')" alt="umbrella" />
             Places To Go
@@ -17,19 +17,24 @@
 
       <brief-covid-comp></brief-covid-comp>
 
+      <modal-img-comp></modal-img-comp>
+
       <home-footer-comp></home-footer-comp>
+
    </div>
 </template>
 
 <script>
 import brief_covid_comp from "@/components/brief-covid-comp.vue"
 import home_footer_comp from "@/components/home-footer-comp.vue"
+import modal_img_comp from "@/components/modal-img-comp.vue"
 
 export default {
    name: "homeContentComp",
    components: {
       "brief-covid-comp":  brief_covid_comp,
-      "home-footer-comp": home_footer_comp
+      "home-footer-comp": home_footer_comp,
+      "modal-img-comp": modal_img_comp
    }
 }
 </script>

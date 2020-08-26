@@ -1,5 +1,8 @@
 <template>
+<div>
   <home-comp></home-comp>
+
+  </div>
 </template>
 
 <script>

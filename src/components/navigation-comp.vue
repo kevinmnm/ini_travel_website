@@ -96,10 +96,13 @@
 </template>
 
 <script>
-import hamburger_icon from "@/components/hamburger-icon.vue"
-let firebase = require('firebase');
+
+// let firebase = require('firebase/app');
+import 'firebase/auth'
+import * as firebase from 'firebase/app'
 import firebaseConfig from "@/firebase.js";
 firebase.initializeApp(firebaseConfig);
+import hamburger_icon from "@/components/hamburger-icon.vue"
 
 export default {
    name: "navigationComp",

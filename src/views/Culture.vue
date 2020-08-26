@@ -1,10 +1,15 @@
 <template> 
-   <div><br><br><br><br>sdfsfwsdfsdfsfsdfsd</div>
+   <culture-comp></culture-comp>
 </template>
 
 <script>
-export default {
+import culture_comp from "@/components/culture-comp.vue"
 
+export default {
+   name: "CulturePageComp",
+   components: {
+      "culture-comp": culture_comp
+   }
 }
 </script>
 

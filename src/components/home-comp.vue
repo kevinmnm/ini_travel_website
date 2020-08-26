@@ -18,7 +18,6 @@
       </div>
 
       <home-content-comp></home-content-comp>
-
    </div>
 </template>
 

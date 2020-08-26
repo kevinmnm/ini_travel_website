@@ -1,6 +1,6 @@
 
 
-let firebase = require('firebase');
+let firebase = require('firebase/app');
 
 let firebaseConfig = {
    apiKey: "AIzaSyAw4B7kCH72jPUdK2vO4leJCHtLAcb9aWs",

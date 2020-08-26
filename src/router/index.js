@@ -13,9 +13,6 @@ const routes = [
    {
       path: '/plan',
       name: 'Plan',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "plan" */ '../views/Plan.vue')
    },
    {
@@ -23,32 +20,27 @@ const routes = [
       name: 'Login',
       component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
    },
-   // {
-   //    path: '/signup',
-   //    name: 'Signup',
-   //    component: () => import(/* webpackChunkName: "signup" */ '../views/Signup.vue')
-   // },
    {
       path: '/places',
       name: 'Places',
-      compnents: () => import(/* webpackChunkName: "places" */ '../views/Places.vue')
+      component: () => import(/* webpackChunkName: "places" */ '../views/Places.vue')
    },
    {
       path: '/culture',
       name: 'Culture',
-      compnents: () => import(/* webpackChunkName: "culture" */ '../views/Culture.vue')
+      component: () => import(/* webpackChunkName: "culture" */ '../views/Culture.vue')
    },
    {
-      path: '/policy',
+      path: '/policy/:id',
       name: 'Policy',
-      compnents: () => import(/* webpackChunkName: "policy" */ '../views/Policy.vue')
+      component: () => import(/* webpackChunkName: "culture" */ '../views/Policy.vue')
    }
-]
+];
 
 const router = new VueRouter({
    mode: 'history',
    base: process.env.BASE_URL,
    routes
-})
+});
 
 export default router
