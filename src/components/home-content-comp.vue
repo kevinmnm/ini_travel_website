@@ -1,7 +1,7 @@
 <template>
    <div class='content-wrapper'>
       <div class='flex-wrap'>
-         <router-link :to="{name: 'Plan'}">
+         <router-link :to="{name: 'Plan', params: {id: 'main'}}">
             <img :src="require('@/assets/reader.svg')" alt="reader" />
             Plan Your Trip
          </router-link>
