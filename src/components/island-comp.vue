@@ -32,7 +32,6 @@ export default {
 
 .island-loop{
    margin-bottom: 30px;
-   box-shadow: 0 0 2px black;
 }
 
 .size{color:green;}
