@@ -1,13 +1,83 @@
 <template>
-   <div><br><br><br>Plan is working...</div>
+   <div class='plan-page'>
+      <div class='data-title'><u><b>Indonesia COVID-19 Status</b></u></div>
+
+      <div class='data-date' title='UTC'>{{ lastUpdated }}</div>
+
+      <div class='flex-data'>
+         <div class='label'>Total Cases</div>
+         <div class='data'>{{ totalCases }}</div>
+
+         <div class='label'>Total Recovered</div>
+         <div class='data'>{{ totalRecovered }}</div>
+
+         <div class='label'>Total Deaths</div>
+         <div class='data'>{{ totalDeaths }}</div>
+      </div>
+   </div>
 </template>
 
 <script>
 export default {
-   name: "planComp"
+   name: "planComp",
+   props: {
+      lastUpdated: String,
+      totalCases: String,
+      totalRecovered: String,
+      totalDeaths: String
+   },
+   data(){
+      return {
+         time_zone: 'UTC',
+      }
+   }
 }
+
+
+
 </script>
 
-<style>
+<style scoped>
+
+.flex-data div{
+   padding: 5px;
+}
+
+.data{
+   font-size: 18px;
+}
+
+.data-date{
+   color: 	maroon;
+   font-family: Arial, sans-serif;
+   font-weight: bold;
+}
+
+.label{
+   background: red;
+   font-size: 20px;
+   color:white;
+}
+
+.flex-data{
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   border: 1px solid green;
+   width: 70%;
+   margin: auto;
+}
+
+.data-title{
+   font-size: 30px;
+   margin-bottom: 15px;
+}
+
+.plan-page{
+   position: relative;
+   top: 70px;
+   text-underline-position: under;
+   font-family: 'Nunito', sans-serif;
+}
 
 </style>

@@ -7,7 +7,8 @@
          <router-link :to="{name: 'Policy', params: {id: 'privacy'}, hash: '#privacy_section'}">Privacy Policy</router-link> |
          <router-link :to="{name: 'Policy', params: {id: 'terms'}, hash: '#terms_section'}">Terms and Conditions</router-link> |
          <router-link :to="{name: 'Policy', params: {id: 'contact'}, hash: '#contact_section'}">Contact Us</router-link>
-      </div>
+      </div><br>
+      <div class='dev'>Designed & Built By Kevin Song</div>
    </div>
 </template>
 
@@ -45,6 +46,7 @@ export default {
    background: black;
    color: white;
    user-select: none;
+   padding-bottom: 5px;
    padding-top: 20px;
 }
 
@@ -71,4 +73,9 @@ img{
    }
 }
 
+.dev{
+   color: grey;
+   cursor: pointer;
+}
+.dev:hover{color:white;}
 </style>
