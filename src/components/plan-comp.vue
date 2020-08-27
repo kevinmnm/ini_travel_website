@@ -1,6 +1,6 @@
 <template>
    <div class='plan-page'>
-      <div class='data-title'><u><b>Indonesia COVID-19 Status</b></u></div>
+      <div id='covid_section' class='data-title'><u><b>Indonesia COVID-19 Status</b></u></div>
 
       <div class='data-date' title='UTC'>{{ lastUpdated }}</div>
 
@@ -17,9 +17,9 @@
 
       <brief-covid-comp></brief-covid-comp>
 
-      <visa-comp></visa-comp>
+      <visa-comp id='visa_section'></visa-comp>
 
-      <essentials-comp></essentials-comp>
+      <essentials-comp id='essentials_section'></essentials-comp>
       <br>
    </div>
 </template>

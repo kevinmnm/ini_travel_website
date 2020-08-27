@@ -12,9 +12,9 @@
             <div @mouseenter="expand($event)" @mouseleave='collapse($event)'>
                Plan Your Trip
                <div class='expander' >
-                  <router-link :to="{name: 'Plan'}">COVID-19</router-link>
-                  <router-link :to="{name: 'Plan'}">Visa</router-link>
-                  <router-link :to="{name: 'Plan'}">Essentials</router-link>
+                  <router-link :to="{name: 'Plan', params: {id: 'covid'}, hash: '#covid_section'}">COVID-19</router-link>
+                  <router-link :to="{name: 'Plan', params: {id: 'visa'}, hash: '#visa_section'}">Visa</router-link>
+                  <router-link :to="{name: 'Plan', params: {id: 'essentials'}, hash: '#essentials_section'}">Essentials</router-link>
                </div>
             </div>
          </router-link>
