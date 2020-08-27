@@ -18,18 +18,23 @@
       <brief-covid-comp></brief-covid-comp>
 
       <visa-comp></visa-comp>
+
+      <essentials-comp></essentials-comp>
+      <br>
    </div>
 </template>
 
 <script>
 import brief_covid_comp from "@/components/brief-covid-comp.vue"
-import visa_comp from "@/components/visa-comp.vue";
+import visa_comp from "@/components/visa-comp.vue"
+import essentials_comp from "@/components/essentials-comp.vue"
 
 export default {
    name: "planComp",
    components: {
       "brief-covid-comp": brief_covid_comp,
-      "visa-comp": visa_comp
+      "visa-comp": visa_comp,
+      "essentials-comp": essentials_comp
    },
    props: {
       lastUpdated: String,
