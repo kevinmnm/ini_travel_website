@@ -3,12 +3,13 @@
      <div>
         <div class='island-title'><u>Islands</u></div>
         <br>
-        <div v-for="all in islands" :key="all.des">
+        <div class='island-loop' v-for="all in islands" :key="all.des">
            <div class='island-name'>{{ all.island }}</div>
-           <div>
-              <img :src="require(`@/assets/${all.img}`)" />
+           <div class='island-img-wrap'>
+              <img class='island-img' :src="require(`@/assets/${all.img}`)" alt="island img" />
            </div>
-           <div>{{  }}</div>
+           <code class='size' v-html="'Size: ' + all.size"></code><br><br>
+           <div class='des'>{{ all.des }}</div>
         </div>
      </div>
   </div>
@@ -28,9 +29,37 @@ export default {
 </script>
 
 <style scoped>
+
+.island-loop{
+   margin-bottom: 30px;
+   box-shadow: 0 0 2px black;
+}
+
+.size{color:green;}
+
+.des{
+   text-align: left;
+   padding: 5px;
+}
+
+.island-img{
+   position: relative;
+   object-fit: contain;
+   width: 100%;
+}
+
+.island-img-wrap{
+   position: relative;
+   width: 100%;
+}
+
 .island-name{
-   font-size: 25px;
+   font-size: 30px;
    font-weight: bold;
+   user-select: none;
+   padding: 5px;
+   background: #202020;
+   color: white;
 }
 
 .island-title{
@@ -39,6 +68,7 @@ export default {
 }
 
 .island-section{
+   position: relative;
    text-underline-position: under;
    width: 75%;
    margin: auto;
