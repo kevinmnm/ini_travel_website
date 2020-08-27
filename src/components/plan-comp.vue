@@ -14,12 +14,23 @@
          <div class='label'>Total Deaths</div>
          <div class='data'>{{ totalDeaths }}</div>
       </div>
+
+      <brief-covid-comp></brief-covid-comp>
+
+      <visa-comp></visa-comp>
    </div>
 </template>
 
 <script>
+import brief_covid_comp from "@/components/brief-covid-comp.vue"
+import visa_comp from "@/components/visa-comp.vue";
+
 export default {
    name: "planComp",
+   components: {
+      "brief-covid-comp": brief_covid_comp,
+      "visa-comp": visa_comp
+   },
    props: {
       lastUpdated: String,
       totalCases: String,
@@ -45,6 +56,7 @@ export default {
 
 .data{
    font-size: 18px;
+   font-weight: bold;
 }
 
 .data-date{
@@ -63,16 +75,20 @@ export default {
    position: relative;
    display: flex;
    flex-direction: column;
-   border: 1px solid green;
-   width: 70%;
+   width: 65%;
    margin: auto;
+   border: 2px solid red;
 }
 
 .data-title{
-   font-size: 30px;
+   font-size: 3.5vw;
    margin-bottom: 15px;
 }
-
+@media only screen and (max-width: 700px) {
+   .data-title{
+      font-size: 30px;
+   }
+}
 .plan-page{
    position: relative;
    top: 70px;
