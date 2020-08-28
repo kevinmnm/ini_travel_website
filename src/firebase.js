@@ -45,6 +45,11 @@ var actionCodeSettings = {
 //    });
 // }
 
+let direct_upon = {
+   url: 'http://localhost:8080/login',
+   handleCodeInApp: true
+ };
+
 export function register_user_func(){
    
    firebase.auth().createUserWithEmailAndPassword(this.new_email, this.new_pw).then( result => {
@@ -55,8 +60,14 @@ export function register_user_func(){
             displayName: this.display_id
          });
       }
+   }).then(()=>{
+      firebase.auth().currentUser.sendEmailVerification(direct_upon).then(()=>{
+         alert('Verification email has been sent.');
+      }).catch( error => {
+         console.log(error);
+      });
    }).catch( error => {
-      alert(error);
+      console.log(error);
    });
 }
 

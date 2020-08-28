@@ -59,9 +59,18 @@
          <h1>{{ display_name || user_email }}</h1>
 
          <h2><u>Profile</u></h2>
-         <img class="profile-img" :src="logged.photoURL" alt="Profile img" /> <br>
+         <img class="profile-img"
+          :src="logged.photoURL ? logged.photoURL : require(`@/assets/${default_img}`)"
+           alt="Profile img" /> 
+         
+         <br>
 
          <button @click='send_email()' v-show="!email_button">Verify Email</button>
+
+         <div class='profile-row'>
+            <div>Email Verified: </div>
+            <div>{{ logged.emailVerified ? 'Yes' : 'No' }}</div>
+         </div>
 
          <div class="profile-row">
             <div>Display Name: </div>
@@ -71,11 +80,6 @@
          <div class='profile-row'>
             <div>Email: </div>
             <div>{{ logged.email }}</div>
-         </div>
-
-         <div class='profile-row'>
-            <div>Email Verified: </div>
-            <div>{{ logged.emailVerified ? 'Yes' : 'No' }}</div>
          </div>
 
          <div class='profile-row'>
@@ -114,7 +118,8 @@ export default {
          display_name: '',
          user_email: '',
          user_info: [],
-         email_button: true
+         email_button: true,
+         default_img: 'missing_img.png'
       }
    },
    methods: {
@@ -219,7 +224,8 @@ export default {
    left: 0;
    cursor: pointer;
    font-size: 15px;
-   color: darkGrey;
+   color: rgb(128, 128, 128);
+   font-weight: bold;
    z-index: 1;
    font-family: 'Nunito', sans-serif;
    text-decoration: none;
@@ -227,7 +233,6 @@ export default {
 
 .backb:hover{
    color: black;
-   font-weight: bold;
 }
 
 .message{
@@ -457,8 +462,9 @@ img {
    height: 150px;
    user-select: none;
 }
-/* .profile-img{
-   width: auto;
-   height: auto;
-} */
+.profile-img{
+   position: relative;
+   width: 150px;
+   height: 150px;
+}
 </style>
