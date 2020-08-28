@@ -13,11 +13,40 @@ let firebaseConfig = {
    measurementId: "G-FW9SZXDE85",
 };
 
+/**
+var actionCodeSettings = {
+   // URL you want to redirect back to. The domain (www.example.com) for this
+   // URL must be whitelisted in the Firebase Console.
+   url: 'http://localhost:8080/login',
+   // This must be true.
+   handleCodeInApp: true
+ };
+ **/
+
 /*************************/
 /*Goes to signup-comp.vue*/
 /*************************/
 
+// export function register_user_func(){
+//    firebase.auth().sendSignInLinkToEmail(this.new_email, actionCodeSettings)
+//    .then(() => {
+//       alert('email sent');
+//    })
+//    .then(() => {
+//       if (firebase.auth().isSignInWithEmailLink(window.location.href)){
+//          firebase.auth().createUserWithEmailAndPassword(this.new_email, this.new_pw);
+//          alert('hello, thank you for signing up (first time trigger and once)');
+//       } else {
+//          alert('sssss');
+//       }
+//    })
+//    .catch((error) => {
+//       alert(error);
+//    });
+// }
+
 export function register_user_func(){
+   
    firebase.auth().createUserWithEmailAndPassword(this.new_email, this.new_pw).then( result => {
       this.logged = result;
 
@@ -37,7 +66,6 @@ export function signOut_func(){
    }).catch(error => {
       alert(error);
    });
-
 }
 
 

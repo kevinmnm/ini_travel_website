@@ -61,6 +61,8 @@
          <h2><u>Profile</u></h2>
          <img class="profile-img" :src="logged.photoURL" alt="Profile img" /> <br>
 
+         <button @click='send_email()' v-show="!email_button">Verify Email</button>
+
          <div class="profile-row">
             <div>Display Name: </div>
             <div>{{ logged.displayName }}</div>
@@ -111,11 +113,19 @@ export default {
          message: '',
          display_name: '',
          user_email: '',
-         user_info: []
+         user_info: [],
+         email_button: true
       }
    },
    methods: {
       signOut: signOut_func,
+
+      send_email(){
+         firebase.auth().currentUser.sendEmailVerification()
+         .then(()=>{
+            alert('Email sent');
+         });
+      },
 
       third_provider(e){
          let eti = e.target.innerHTML;
@@ -162,6 +172,7 @@ export default {
       firebase.auth().onAuthStateChanged( user => {
          if (user) {
             this.show_which = 2;
+            user.emailVerified ? this.email_button = true : this.email_button = false;
          }
       });
    }

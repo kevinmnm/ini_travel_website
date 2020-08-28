@@ -14,7 +14,7 @@
             <input type='text' v-model='last_name' placeholder="Last Name" />
          </div>
          <input type='tel' v-model='phone_number' placeholder='Phone' />
-         <button class='sbutton' disabled>Subimt</button>
+         <button class='sbutton' disabled>Submit</button>
       </form>
    </div>
 </template>
@@ -69,12 +69,11 @@ export default {
          if (user){
             this.logged = user;
             this.$emit('logged-in', user);
-            return
          } else {
             this.logged = null;
             this.$emit('logged-in', null);
          }
-      })
+      });
    }
 };
 </script>

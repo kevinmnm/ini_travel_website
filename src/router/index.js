@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
+let firebase = require('firebase/app');
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -56,6 +58,25 @@ const router = new VueRouter({
       }
    },
    routes
+});
+
+router.beforeEach((to, from, next) => {
+   if (to.name === 'Home' || to.name === 'Login'){
+      next();
+   } else {
+      let loggedin = firebase.auth().currentUser;
+      if (loggedin){
+         if (loggedin.emailVerified){
+            next();
+         } else {
+            alert('Please verify your email.');
+            next({name: 'Login'});
+         }
+      } else {
+         alert('Please log-in');
+         next({name: 'Login'});
+      }
+   }
 });
 
 export default router

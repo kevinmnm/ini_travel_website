@@ -9,7 +9,7 @@
             <img :src="require('@/assets/umbrella.svg')" alt="umbrella" />
             Places To Go
          </router-link>
-         <router-link :to="{name: 'Culture'}">
+         <router-link :to="{name: 'Culture', params: {id: 'main'}}">
             <img :src="require('@/assets/praying.svg')" alt="praying" />
             Learn The Culture
          </router-link>
