@@ -29,7 +29,7 @@
                <div @click="third_provider($event)">Login with Twitter</div>
             </div>
          </div>
-         <div class='powered'>Powered with Google Firebse</div>
+         <div class='powered' onclick="window.open('https://firebase.google.com/')">Powered with Google Firebse</div>
       </div>
 
       <!-- <div class="cred" v-show="!show_signup">
@@ -210,6 +210,11 @@ export default {
    z-index: 1;
    font-size: 14px;
    color: darkGrey;
+   cursor: pointer;
+   user-select: none;
+}
+.powered:hover{
+   color: rgb(153, 54, 54);
 }
 
 .dash-logout{
@@ -438,12 +443,11 @@ input:active {
 
 .page-wrapper {
    position: relative;
-   height: 100%;
-   width: 100%;
+   top: 7%;
+   width: 75%;
    margin: auto;
    font-family: "Nunito", sans-serif;
    text-underline-position: under;
-   background: rgba(245, 245, 245, 0.315);
 }
 
 @media only screen and (max-width: 700px) {

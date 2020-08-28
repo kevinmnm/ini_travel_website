@@ -10,6 +10,7 @@
          </div>
          <div class='attractions-des'>{{ all.des }}</div>
       </div>
+      <br>
    </div>
 </template>
 

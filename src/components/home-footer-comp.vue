@@ -48,6 +48,7 @@ export default {
    user-select: none;
    padding-bottom: 5px;
    padding-top: 20px;
+   padding-bottom: 10px;
 }
 
 img{
