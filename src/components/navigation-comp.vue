@@ -19,7 +19,7 @@
             </div>
          </router-link>
 
-         <router-link :to="{name: 'Places'}">
+         <router-link :to="{name: 'Places', params: {id: 'main'}}">
             <div @mouseenter="expand($event)" @mouseleave='collapse($event)'>
                Places To Go
                <div class='expander'>
@@ -34,7 +34,7 @@
             <div @mouseenter="expand($event)" @mouseleave='collapse($event)'>
                Learn The Culture
                <div class='expander'>
-                  <router-link :to="{name: 'Culture'}">About</router-link>
+                  <router-link :to="{name: 'Culture'}">Religion</router-link>
                   <router-link :to="{name: 'Culture'}">Etiquette</router-link>
                   <router-link :to="{name: 'Culture'}">Foods</router-link>
                </div>
@@ -70,7 +70,7 @@
 
                <br>
 
-               <router-link :to="{name: 'Places'}">Places To Go</router-link>
+               <router-link :to="{name: 'Places', params: {id: 'main'}}">Places To Go</router-link>
                <div class='sub-menu'>
                   <router-link :to="{name: 'Places', params: {id: 'island'}, hash: '#islands_section'}">Island</router-link>
                   <router-link :to="{name: 'Places', params: {id: 'cities'}, hash: '#cities_section'}">Cities</router-link>
@@ -81,7 +81,7 @@
 
                <router-link :to="{name: 'Culture'}">Learn The Culture</router-link>
                <div class='sub-menu'>
-                  <router-link :to="{name: 'Culture'}">About</router-link>
+                  <router-link :to="{name: 'Culture'}">Religion</router-link>
                   <router-link :to="{name: 'Culture'}">Etiquette</router-link>
                   <router-link :to="{name: 'Culture'}">Foods</router-link>
                </div>
