@@ -1,9 +1,9 @@
 <template>
    
-   <div id="nav">
+   <div id="nav" draggable="false">
       <div class="home-wrapper">
          <router-link to="/">
-            <img src="../assets/logo.png" alt="logo img" />
+            <img src="../assets/logo.png" alt="logo img" draggable='false' />
          </router-link>
       </div>
 
@@ -30,13 +30,13 @@
             </div>
          </router-link>
 
-         <router-link :to="{name: 'Culture'}">
+         <router-link :to="{name: 'Culture', params: {id: 'main'}}">
             <div @mouseenter="expand($event)" @mouseleave='collapse($event)'>
                Learn The Culture
                <div class='expander'>
-                  <router-link :to="{name: 'Culture'}">Religion</router-link>
-                  <router-link :to="{name: 'Culture'}">Etiquette</router-link>
-                  <router-link :to="{name: 'Culture'}">Foods</router-link>
+                  <router-link :to="{name: 'Culture', params: {id: 'religion'}, hash: '#religion_section'}">Religion</router-link>
+                  <router-link :to="{name: 'Culture', params: {id: 'etiquette'}, hash: '#etiquette_section'}">Etiquette</router-link>
+                  <router-link :to="{name: 'Culture', params: {id: 'foods'}, hash: '#foods_section'}">Foods</router-link>
                </div>
             </div>
          </router-link>
@@ -79,11 +79,11 @@
 
                <br>
 
-               <router-link :to="{name: 'Culture'}">Learn The Culture</router-link>
+               <router-link :to="{name: 'Culture', params: {id: 'main'}}">Learn The Culture</router-link>
                <div class='sub-menu'>
-                  <router-link :to="{name: 'Culture'}">Religion</router-link>
-                  <router-link :to="{name: 'Culture'}">Etiquette</router-link>
-                  <router-link :to="{name: 'Culture'}">Foods</router-link>
+                  <router-link :to="{name: 'Culture', params: {id: 'religion'}, hash: '#religion_section'}">Religion</router-link>
+                  <router-link :to="{name: 'Culture', params: {id: 'etiquette'}, hash: '#etiquette_section'}">Etiquette</router-link>
+                  <router-link :to="{name: 'Culture', params: {id: 'foods'}, hash: '#foods_section'}">Foods</router-link>
                </div>
                
             </div>

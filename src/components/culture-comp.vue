@@ -1,10 +1,10 @@
 <template>
    <div>
-      <culture-religion-comp></culture-religion-comp>
+      <culture-religion-comp id="religion_section"></culture-religion-comp>
 
-      <culture-etiquette-comp></culture-etiquette-comp>
+      <culture-etiquette-comp id="etiquette_section"></culture-etiquette-comp>
 
-      <culture-foods-comp></culture-foods-comp>
+      <culture-foods-comp id="foods_section"></culture-foods-comp>
    </div>
 </template>
 
