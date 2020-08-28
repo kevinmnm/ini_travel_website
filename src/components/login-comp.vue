@@ -29,6 +29,7 @@
                <div @click="third_provider($event)">Login with Twitter</div>
             </div>
          </div>
+         <div class='powered'>Powered with Google Firebse</div>
       </div>
 
       <!-- <div class="cred" v-show="!show_signup">
@@ -168,6 +169,17 @@ export default {
 </script>
 
 <style scoped>
+
+.powered{
+   position: absolute;
+   width: 150px;
+   left: calc(50% - 75px);
+   bottom: 100;
+   margin-top: 30px;
+   z-index: 1;
+   font-size: 14px;
+   color: darkGrey;
+}
 
 .dash-logout{
    position: relative;
