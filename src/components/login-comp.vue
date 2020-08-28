@@ -17,7 +17,7 @@
          <div class="flex-wrapper-login">
             <div class="input-field">
                <input type="text" placeholder="Username" v-model='username' @input='allow_submit()'/>
-               <input type="passoword" placeholder="Password" v-model='password' @input='allow_submit()' />
+               <input type="password" placeholder="Password" v-model='password' @input='allow_submit()' />
                <div @click='login()' :class="{'submit-disabled': toggle_disable, 'submit': !toggle_disable}">LOG IN</div>
             </div>
             <div class="seperator">
