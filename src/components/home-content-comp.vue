@@ -5,7 +5,7 @@
             <img :src="require('@/assets/reader.svg')" alt="reader" />
             Plan Your Trip
          </router-link>
-         <router-link :to="{name: 'Places'}">
+         <router-link :to="{name: 'Places', params: {id: 'main'}}">
             <img :src="require('@/assets/umbrella.svg')" alt="umbrella" />
             Places To Go
          </router-link>

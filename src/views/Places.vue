@@ -1,10 +1,10 @@
 <template>
    <div class='island-page'>
-      <island-comp></island-comp>
+      <island-comp id="islands_section"></island-comp>
 
-      <cities-comp></cities-comp>
+      <cities-comp id="cities_section"></cities-comp>
 
-      <attractions-comp></attractions-comp>
+      <attractions-comp id="attractions_section"></attractions-comp>
    </div>
 </template>
 

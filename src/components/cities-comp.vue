@@ -144,7 +144,7 @@ export default {
    object-fit: cover;
    height: 100%;
    width: 100%;
-   cursor: pointer;
+   cursor: zoom-in;
    opacity: 0.2;
    transition: 0.2s;
 }

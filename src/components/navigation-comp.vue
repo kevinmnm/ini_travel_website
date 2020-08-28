@@ -23,9 +23,9 @@
             <div @mouseenter="expand($event)" @mouseleave='collapse($event)'>
                Places To Go
                <div class='expander'>
-                  <router-link :to="{name: 'Places'}">Islands</router-link>
-                  <router-link :to="{name: 'Places'}">Cities</router-link>
-                  <router-link :to="{name: 'Places'}">Attractions</router-link>
+                  <router-link :to="{name: 'Places', params: {id: 'islands'}, hash: '#islands_section'}">Islands</router-link>
+                  <router-link :to="{name: 'Places', params: {id: 'cities'}, hash: '#cities_section'}">Cities</router-link>
+                  <router-link :to="{name: 'Places', params: {id: 'attractions'}, hash: '#attractions_section'}">Attractions</router-link>
                </div>
             </div>
          </router-link>
@@ -72,9 +72,9 @@
 
                <router-link :to="{name: 'Places'}">Places To Go</router-link>
                <div class='sub-menu'>
-                  <router-link :to="{name: 'Places'}">Island</router-link>
-                  <router-link :to="{name: 'Places'}">Cities</router-link>
-                  <router-link :to="{name: 'Places'}">Attractions</router-link>
+                  <router-link :to="{name: 'Places', params: {id: 'island'}, hash: '#islands_section'}">Island</router-link>
+                  <router-link :to="{name: 'Places', params: {id: 'cities'}, hash: '#cities_section'}">Cities</router-link>
+                  <router-link :to="{name: 'Places', params: {id: 'attractions'}, hash: '#attractions_section'}">Attractions</router-link>
                </div>
 
                <br>

@@ -39,6 +39,7 @@ export default {
    object-fit: contain;
    width: 100%;
    height: 100%;
+   border-radius: 10%;
 }
 
 .attractions-img-wrap{
@@ -50,6 +51,7 @@ export default {
 .attractions-content-title{
    font-size: 25px;
    margin-top: 30px;
+   font-weight: bold;
 }
 .attractions-content{
    position: relative;
