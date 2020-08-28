@@ -56,6 +56,7 @@ export default {
 
 .religion-section{
    position: relative;
+   width: 100%;
    top: 50px;
    background: #2a3326;
    color: white;
