@@ -36,6 +36,11 @@ const routes = [
       path: '/policy/:id',
       name: 'Policy',
       component: () => import(/* webpackChunkName: "culture" */ '../views/Policy.vue')
+   },
+   {
+      path: '/*',
+      name: '404',
+      component: () => import(/* webpackChunkName: "404" */ '../views/404.vue')
    }
 ];
 
@@ -61,7 +66,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-   if (to.name === 'Home' || to.name === 'Login'){
+   if (to.name === 'Home' || to.name === 'Login' || to.name === '404'){
       next();
    } else {
       let loggedin = firebase.auth().currentUser;
