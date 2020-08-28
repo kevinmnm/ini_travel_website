@@ -73,7 +73,7 @@ router.beforeEach((to, from, next) => {
             next({name: 'Login'});
          }
       } else {
-         alert('Please log-in');
+         alert('Please log in to view contents');
          next({name: 'Login'});
       }
    }
