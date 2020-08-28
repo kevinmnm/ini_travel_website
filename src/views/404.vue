@@ -14,7 +14,7 @@ export default {
 
 .missing-page-img{
    position: relative;
-   object-fit: cover;
+   object-fit: contain;
    width: 95%;
    height: 95%;
    top: 2.5%;
@@ -36,7 +36,6 @@ export default {
    width: 100%;
    height: calc(100% - 50px);
    overflow: auto;
-   border: 10px solid green;
    box-sizing: border-box;
    user-select: none;
 }
