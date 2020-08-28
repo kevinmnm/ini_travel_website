@@ -62,14 +62,22 @@
          <img class="profile-img"
           :src="logged.photoURL ? logged.photoURL : require(`@/assets/${default_img}`)"
            alt="Profile img" /> 
-         
-         <br>
 
-         <button @click='send_email()' v-show="!email_button">Verify Email</button>
+         <button class='dash-logout' @click='send_email()' v-show="!email_button">Verify Email</button>
+
+         <br>
 
          <div class='profile-row'>
             <div>Email Verified: </div>
-            <div>{{ logged.emailVerified ? 'Yes' : 'No' }}</div>
+            <div 
+            :class="{ 'green': logged.emailVerified, 'red': !logged.emailVerified }">
+               {{ logged.emailVerified ? 'Yes' : 'No' }}
+            </div>
+         </div>
+
+         <div class='profile-row'>
+            <div>Email: </div>
+            <div>{{ logged.email }}</div>
          </div>
 
          <div class="profile-row">
@@ -78,17 +86,12 @@
          </div>
 
          <div class='profile-row'>
-            <div>Email: </div>
-            <div>{{ logged.email }}</div>
-         </div>
-
-         <div class='profile-row'>
             <div>Unique ID: </div>
             <div>{{ logged.uid }}</div>
          </div>
 
          <button class='dash-logout' @click='signOut()'>Log Out</button>
-
+         <br>
       </div>
 
    </div>
@@ -186,6 +189,18 @@ export default {
 
 <style scoped>
 
+.red{
+   color: rgb(190, 0, 0) !important;
+   background: rgb(248, 182, 182) !important;
+   font-weight: bold !important;
+}
+
+.green{
+   color: green !important;
+   background: rgb(191, 255, 191) !important;
+   font-weight: bold !important;
+}
+
 .powered{
    position: absolute;
    width: 150px;
@@ -198,20 +213,20 @@ export default {
 }
 
 .dash-logout{
-   position: relative;
-   width: 150px;
-   padding: 5px;
-   font-weight: bold;
-   background: black;
-   color: white;
-   border-radius: 5px;
-   box-shadow: 0 0 2px grey;
-   margin: auto;
-   margin-top: 20px;
-   font-size: 20px;
-   cursor: pointer;
-   outline: none;
-   border: none;
+      position: relative;
+      width: 150px;
+      padding: 5px;
+      font-weight: bold;
+      background: black;
+      color: white;
+      border-radius: 5px;
+      box-shadow: 0 0 2px grey;
+      margin: auto;
+      margin-top: 20px;
+      font-size: 20px;
+      cursor: pointer;
+      outline: none;
+      border: none;
 }
 .dash-logout:hover{
    background:brown;
@@ -244,17 +259,18 @@ export default {
 }
 
 .profile-row div{
-   border: 1px solid orange;
    width: 45%;
    box-sizing: border-box;
    padding: 2px;
    font-size: 20px;
    word-wrap: break-word;
+   box-shadow: 0 0 3px black;
+   background: white;
 }
 
 @media only screen and (max-width: 1000px) {
    .profile-row div{
-      font-size: 15px;
+      font-size: 16px;
    }
 }
 
@@ -265,7 +281,7 @@ export default {
 }
 
 .profile-row div:nth-child(even){
-   text-align: left;
+   text-align: center;
    padding-left: 10px;
 }
 
@@ -281,7 +297,8 @@ export default {
    justify-content: center;
    flex-direction: row;
    flex-wrap: wrap;
-   width: 100%;
+   width: 80%;
+   margin: auto;
 }
 .profile{
    margin-top: 30px;
@@ -367,7 +384,7 @@ input:active {
 .submit{
    /* background-color: #eedfc9; */
    background: white;
-   box-shadow: 0 0 3px black;
+   box-shadow: 0 0 2px black;
    color: #101010;
    margin-top: 10px;
    padding: 5px;
@@ -421,12 +438,12 @@ input:active {
 
 .page-wrapper {
    position: relative;
-   top: 7%;
-   width: 80%;
-   height: 70%;
+   height: 100%;
+   width: 100%;
    margin: auto;
    font-family: "Nunito", sans-serif;
    text-underline-position: under;
+   background: rgba(245, 245, 245, 0.315);
 }
 
 @media only screen and (max-width: 700px) {
