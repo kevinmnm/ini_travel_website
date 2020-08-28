@@ -93,11 +93,13 @@ export default {
 .modal-img-wrap{
    position: relative;
    width: 100%;
+   overflow: hidden;
 }
 .modal-img {
    position: relative;
    object-fit: contain;
    height: 100%;
+   width: 100%;
    border-radius: 5px;
 }
 
@@ -108,6 +110,7 @@ export default {
    padding: 10px;
    background: white;
    cursor: default;
+   word-wrap: break-word;
 }
 
 .cities-modal-wrap {
@@ -177,6 +180,7 @@ export default {
 .cities-title {
    font-size: 30px;
    font-weight: bold;
+   user-select: none;
 }
 
 .cities-section {
