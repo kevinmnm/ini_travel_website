@@ -51,6 +51,9 @@ let direct_upon = {
  };
 
 export function register_user_func(){
+   if (this.new_pw !== this.new_pw_match){
+      return this.error_message = 'Error: Passwords are not matching.';
+   }
    
    firebase.auth().createUserWithEmailAndPassword(this.new_email, this.new_pw).then( result => {
       this.logged = result;
@@ -67,7 +70,7 @@ export function register_user_func(){
          console.log(error);
       });
    }).catch( error => {
-      console.log(error);
+      this.error_message = 'Error: ' + error.message;
    });
 }
 

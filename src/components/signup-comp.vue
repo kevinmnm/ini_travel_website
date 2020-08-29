@@ -3,15 +3,17 @@
       <div class='back' @click='back()'>&#8630; Back to Log-In</div>
       <img src="../assets/logo.png" alt="logo img" />
       <div class="title" v-html='title'></div>
+      <br>
+      <div class='signup-error'>{{ error_message }}</div>
       <form class="form" @submit.prevent="register_user()">
-         <input @input='enable()' type='email' v-model='new_email' placeholder='Email' required />
-         <input @input='enable()' type='password' v-model='new_pw' placeholder='Password' required />
-         <input @input='enable()' type='password' v-model='new_pw_match' placeholder='Re-type Password' required />
+         <input @input='enable()' @keydown.space.prevent type='email' v-model='new_email' placeholder='Email' required />
+         <input @input='enable()' @keydown.space.prevent type='password' v-model='new_pw' placeholder='Password' required />
+         <input @input='enable()' @keydown.space.prevent type='password' v-model='new_pw_match' placeholder='Re-type Password' required />
          <br>
          <input type='text' v-model='display_id' placeholder='Display ID' />
          <div class='row-view'>
-            <input type='text' v-model='first_name' placeholder="First Name" />
-            <input type='text' v-model='last_name' placeholder="Last Name" />
+            <input type='text' @keydown.space.prevent v-model='first_name' placeholder="First Name" />
+            <input type='text' @keydown.space.prevent v-model='last_name' placeholder="Last Name" />
          </div>
          <input type='tel' v-model='phone_number' placeholder='Phone' />
          <button class='sbutton' disabled>Submit</button>
@@ -30,7 +32,7 @@ export default {
    name: "signupComp",
    data(){
       return {
-         title: 'Sign Up For <i>Inidream</i>',
+         title: 'Sign Up For <i>Initravel</i>',
          new_email: '',
          new_pw: '',
          new_pw_match: '',
@@ -39,7 +41,8 @@ export default {
          last_name: '',
          phone_number: null,
          empty_counter: [],
-         logged: null
+         logged: null,
+         error_message: ''
       }
    },
    methods: {
@@ -80,9 +83,17 @@ export default {
 
 <style scoped>
 
+.signup-error{
+   font-weight: bold;
+   color: red;
+   font-size: 15px;
+   margin-bottom: 10px;
+   height: 20px;
+}
+
 .back{
    position: absolute;
-   top: 0;
+   top: 15px;
    left: 0;
    cursor: pointer;
    font-size: 15px;
@@ -98,7 +109,7 @@ export default {
 button{
    display: block;
    margin-top: 15px;
-   font-size: 20px;
+   font-size: 25px;
    background-color: white;
    border: none;
    box-shadow: 0 0 3px black;
@@ -114,7 +125,7 @@ button:disabled{
 
 input{
    box-sizing: border-box;
-   font-size: 18px;
+   font-size: 20px;
    display: block;
    padding: 5px;
    font-family: 'Nunito', sans-serif;

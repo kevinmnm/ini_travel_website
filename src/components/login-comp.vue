@@ -5,19 +5,21 @@
          <img src="../assets/logo.png" alt="logo img" />
          <div class="title">
             Log into
-            <i>Inidream</i>
+            <i>Initravel</i>
          </div>
          <div class="title_minor">
             New?
             <a class='signup-link' @click.prevent="show_which = 2">Sign Up Here</a>
          </div>
+         <br>
          <hr />
+         <br>
          <div class='message'>{{ message }}</div>
          <br />
          <div class="flex-wrapper-login">
             <div class="input-field">
-               <input type="text" placeholder="Username" v-model='username' @input='allow_submit()'/>
-               <input type="password" placeholder="Password" v-model='password' @input='allow_submit()' />
+               <input type="text" placeholder="Username" @keydown.space.prevent v-model='username' @input='allow_submit()'/>
+               <input type="password" placeholder="Password" @keydown.space.prevent v-model='password' @input='allow_submit()' />
                <div @click='login()' :class="{'submit-disabled': toggle_disable, 'submit': !toggle_disable}">LOG IN</div>
             </div>
             <div class="seperator">
@@ -144,7 +146,7 @@ export default {
          } else if (eti.includes('Facebook')){
             provider = new firebase.auth.FacebookAuthProvider();
          } else if (eti.includes('Twitter')){
-            alert('Sorry, currently waiting on Twitter to approve developer account.\nPlease try Google or Facebook login service instead.')
+            this.message='Currently unavailable. Please try again with Google or Facebook login.'
             //provider = new firebase.auth.TwitterAuthProvider();
          }  
 
