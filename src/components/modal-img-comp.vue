@@ -5,8 +5,8 @@
             
             <img 
             @click.self="zoom_in($event)" 
-            class='imgs animate__animated' 
-            :class="{'animate__fadeInUp': fade_in}" 
+            class='imgs' 
+            :class="{'show_ani': fade_in, 'opacity-0': !fade_in}" 
             :src="require('@/assets/' + all.file)" 
             alt='modal img' 
             draggable='false' 
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+
 const img_list = [
    {
       file: 'modal_img_1.png'
@@ -44,7 +45,9 @@ export default {
          window_innerHeight: null,
          window_scrollY: null,
          imgs_top: null,
-         fade_in: false
+         fade_in: false,
+         img_el: null,
+         imgs_rect: null
       }
    },
    methods: {
@@ -63,14 +66,18 @@ export default {
          document.body.style.overflow = 'auto';
       },
       scroll_trigger(){
-         console.log(window.innerHeight);
+         this.img_el = document.querySelector('.img-wrap');
+         this.imgs_rect = this.img_el.getBoundingClientRect();
+         this.window_innerHeight = window.innerHeight;
+         let half_height = this.imgs_rect.height / 2;
+         let el_top = this.imgs_rect.top;
+
+         if (window.scrollY >=  el_top + half_height){
+            this.fade_in = true;
+         }
       }
    },
-   mounted(){
-      this.window_innerHeight = window.innerHeight;
-      let imgs = document.querySelector('.imgs');
-      let imgs_rect = imgs.getBoundingClientRect();
-      console.log(imgs_rect);
+   created(){
       window.addEventListener('scroll', this.scroll_trigger);
    },
    destroyed(){
@@ -83,6 +90,21 @@ export default {
 
 .opacity-0{
    opacity: 0;
+}
+
+.show_ani{
+   animation: show_ani 0.5s linear;
+}
+
+@keyframes show_ani{
+   from {
+      top: 50px;
+      opacity: 0;
+   }
+   to {
+      top: 10px;
+      opacity: 1;
+   }
 }
 
 .imgs{
