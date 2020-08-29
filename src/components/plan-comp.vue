@@ -1,6 +1,7 @@
 <template>
    <div class='plan-page'>
       <div id='covid_section' class='data-title'><u><b>Indonesia COVID-19 Status</b></u></div>
+      <div><u>Real-time data</u></div><br>
 
       <div class='data-date' title='UTC'>{{ lastUpdated }}</div>
 
@@ -68,6 +69,7 @@ export default {
    color: 	maroon;
    font-family: Arial, sans-serif;
    font-weight: bold;
+   font-size: 22px;
 }
 
 .label{

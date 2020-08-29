@@ -65,7 +65,7 @@ export function register_user_func(){
       }
    }).then(()=>{
       firebase.auth().currentUser.sendEmailVerification(direct_upon).then(()=>{
-         alert('Verification email has been sent.');
+         alert('Verification email has been sent to: ' + this.new_email + '.');
       }).catch( error => {
          console.log(error);
       });

@@ -32,7 +32,6 @@ export default {
       },
    },
    created() {
-      console.log("hi");
       let covid = new XMLHttpRequest();
 
       covid.onreadystatechange = () => {
@@ -46,8 +45,6 @@ export default {
             this.total_recovered = this.add_commas(
                covid_parsed_recent.Recovered
             );
-         } else {
-            console.log("??");
          }
       };
       covid.open("GET", "https://api.covid19api.com/total/country/indonesia");
