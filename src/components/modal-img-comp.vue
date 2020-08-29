@@ -5,7 +5,8 @@
             
             <img 
             @click.self="zoom_in($event)" 
-            class='imgs' 
+            class='imgs animate__animated' 
+            :class="{'animate__fadeInUp': fade_in}" 
             :src="require('@/assets/' + all.file)" 
             alt='modal img' 
             draggable='false' 
@@ -39,7 +40,11 @@ export default {
    name: "modalImgComp",
    data(){
       return{
-         imgs: img_list
+         imgs: img_list,
+         window_innerHeight: null,
+         window_scrollY: null,
+         imgs_top: null,
+         fade_in: false
       }
    },
    methods: {
@@ -56,12 +61,29 @@ export default {
          e.target.classList.remove('zoom-in');
          e.target.childNodes[0].classList.remove('zoom-in-img');
          document.body.style.overflow = 'auto';
+      },
+      scroll_trigger(){
+         console.log(window.innerHeight);
       }
+   },
+   mounted(){
+      this.window_innerHeight = window.innerHeight;
+      let imgs = document.querySelector('.imgs');
+      let imgs_rect = imgs.getBoundingClientRect();
+      console.log(imgs_rect);
+      window.addEventListener('scroll', this.scroll_trigger);
+   },
+   destroyed(){
+      window.removeEventListener('scroll', this.scroll_trigger);
    }
 }
 </script>
 
 <style scoped>
+
+.opacity-0{
+   opacity: 0;
+}
 
 .imgs{
    position: absolute;

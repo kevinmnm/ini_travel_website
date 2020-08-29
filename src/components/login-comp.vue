@@ -29,7 +29,7 @@
                <div @click="third_provider($event)">Login with Twitter</div>
             </div>
          </div>
-         <div class='powered' onclick="window.open('https://firebase.google.com/')">Powered with Google Firebse</div>
+         <div class='powered' onclick="window.open('https://firebase.google.com/')">Integrated with Google Firebse</div>
       </div>
 
       <!-- <div class="cred" v-show="!show_signup">
@@ -144,7 +144,8 @@ export default {
          } else if (eti.includes('Facebook')){
             provider = new firebase.auth.FacebookAuthProvider();
          } else if (eti.includes('Twitter')){
-            provider = new firebase.auth.TwitterAuthProvider();
+            alert('Sorry, currently waiting on Twitter to approve developer account.\nPlease try Google or Facebook login service instead.')
+            //provider = new firebase.auth.TwitterAuthProvider();
          }  
 
          firebase.auth().signInWithPopup(provider).then((user) => {
