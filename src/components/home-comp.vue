@@ -40,9 +40,9 @@ export default {
    },
    data(){
       return {
-         img_src1: 'front1_2400x1600.jpg',
-         img_src2: 'front2_1980x1080.png',
-         img_src3: 'front3_1980x1080.png',
+         img_src1: 'front1_2400x1600.jpg', //For small: 'front4_600x1080.png'.
+         img_src2: 'front2_1980x1080.png', //For small: 'front5_600x1080.png'.
+         img_src3: 'front3_1980x1080.png', //For small: 'front6_600x1080.png'.
          show_img: 1,
          circle1: null,
          circle2: null,
@@ -53,6 +53,17 @@ export default {
       }
    },
    methods: {
+      change_img(){
+         if (window.innerWidth <= 600){
+            this.img_src1 = 'front4_600x1080.png';
+            this.img_src2 = 'front5_600x1080.png';
+            this.img_src3 = 'front6_600x1080.png';
+         } else {
+            this.img_src1 = 'front1_2400x1600.jpg';
+            this.img_src2 = 'front2_1980x1080.png';
+            this.img_src3 = 'front3_1980x1080.png';
+         }
+      },
       prev_img(){
          this.main_text_1 = false;
          this.main_text_2 = false;
@@ -85,6 +96,12 @@ export default {
             }
          }
       }
+   },
+   created(){
+      window.addEventListener('resize', this.change_img);
+   },
+   destroyed(){
+      window.removeEventListener('resize', this.change_img);
    },
    mounted(){
 

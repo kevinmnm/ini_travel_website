@@ -70,6 +70,7 @@ router.beforeEach((to, from, next) => {
       next();
    } else {
       let loggedin = firebase.auth().currentUser;
+
       if (loggedin){
          if (loggedin.emailVerified){
             next();
