@@ -168,6 +168,11 @@ export default {
    font-weight: bold;
 }
 
+.front-text-3:hover{
+   text-shadow: 0 0 20px brown,0 0 20px brown,0 0 20px brown,0 0 20px brown,0 0 20px brown,0 0 20px brown,0 0 20px brown,0 0 20px brown,0 0 20px brown,0 0 20px brown,0 0 20px brown,0 0 20px brown;
+   color: white;
+}
+
 @media only screen and (max-width: 1000px) {
    .front-text-1{
       font-size: 50px;

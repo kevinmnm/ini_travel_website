@@ -1,7 +1,7 @@
 <template>
    <div class='plan-page'>
       <div id='covid_section' class='data-title'><u><b>Indonesia COVID-19 Status</b></u></div>
-      <div><u>Real-time data</u></div><br>
+      <div style='color:brown;'><u>Real-time data</u></div><br>
 
       <div class='data-date' title='UTC'>{{ lastUpdated }}</div>
 

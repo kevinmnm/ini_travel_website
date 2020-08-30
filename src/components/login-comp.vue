@@ -1,8 +1,22 @@
 <template>
    <div class="page-wrapper">
 
+      <img class='setting-icon' :src="require('@/assets/users-cog.svg')" alt="user-cog.svg" />
+
+      <div class="setting-wrap">
+            <div class="setting-box">
+               <div>Profile Setting</div>
+               <input type="text" @keydown.prevent.space placeholder="New Display Name" />
+               <input type="tel" @keydown.prevent.space placeholder="New Phone Number" />
+               <div>
+                  <div class='setting-confirm' :class="{'buttons-disabled': !activate_buttons}">Confirm</div>
+                  <div class='setting-cancel' :class="{'buttons-disabled': !activate_buttons}">Cancel</div>
+               </div>
+            </div>
+         </div>
+
       <div v-if='show_which === 1'>
-         <img src="../assets/logo.png" alt="logo img" />
+         <img src="../assets/logo.png" @click="setting()" alt="logo img" />
          <div class="title">
             Log into
             <i>Initravel</i>
@@ -124,7 +138,8 @@ export default {
          user_email: '',
          user_info: [],
          email_button: true,
-         default_img: 'missing_img.png'
+         default_img: 'missing_img.png',
+         activate_buttons: false
       }
    },
    methods: {
@@ -177,6 +192,9 @@ export default {
          if (e){
             this.show_which = 3;
          }
+      },
+      setting(){
+
       }
    },
    created(){
@@ -191,6 +209,60 @@ export default {
 </script>
 
 <style scoped>
+
+.buttons-disabled{
+   cursor: not-allowed;
+   background: lightGrey !important;
+}
+
+.setting-confirm,
+.setting-cancel{
+   width: 190px;
+   padding: 10px;
+   background: brown;
+   border-radius: 5px;
+   box-sizing: border-box;
+}
+
+.setting-box div{
+   margin: auto;
+}
+
+.setting-wrap{
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background:rgb(0, 0, 0, 0.9);
+   z-index: 10;
+   color: white;
+   font-size: 40px;
+   text-underline-position: under;
+}
+
+.setting-box input{
+   width: 60%;
+}
+
+.setting-box{
+   position: relative;
+   width: 80%;
+   height: 80%;
+   top: 10%;
+   margin: auto;
+   display: flex;
+   flex-direction: column;
+   background: #101010;
+}
+
+.setting-icon{
+   position: absolute;
+   right: 0;
+   width: 45px;
+   height: 45px;
+   cursor: pointer;
+}
 
 .red{
    color: rgb(190, 0, 0) !important;
