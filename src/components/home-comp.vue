@@ -1,10 +1,10 @@
 <template>
    <div>
       <div class='img-wrapper'>
-         <transition name='main-img'>
-            <img class="font-img-full" v-if="show_img === 1" alt="front-img1" :src="require(`../assets/${img_src1}`)" draggable="false" key="1"/>
-            <img class="font-img-full" v-else-if="show_img === 2" alt="front-img2" :src="require(`../assets/${img_src2}`)" draggable="false" key="2" />
-            <img class="font-img-full" v-else alt="front-img3" :src="require(`../assets/${img_src3}`)" draggable="false" key="3" />
+         <transition name='main-img' mode="out-in">
+            <img class="front-img-full" v-if="show_img === 1" alt="front-img1" :src="require(`../assets/${img_src1}`)" draggable="false" key="q1"/>
+            <img class="front-img-full" v-else-if="show_img === 2" alt="front-img2" :src="require(`../assets/${img_src2}`)" draggable="false" key="q2" />
+            <img class="front-img-full" v-else alt="front-img3" :src="require(`../assets/${img_src3}`)" draggable="false" key="q3" />
          </transition>
 
          <div class='front-text-wrap'>
@@ -54,9 +54,15 @@ export default {
    },
    methods: {
       prev_img(){
+         this.main_text_1 = false;
+         this.main_text_2 = false;
+         this.main_text_3 = false;
          (this.show_img === 1) ? this.show_img = 3 : this.show_img--;
       },
       next_img(){
+         this.main_text_1 = false;
+         this.main_text_2 = false;
+         this.main_text_3 = false;
          (this.show_img === 3) ? this.show_img = 1 : this.show_img++;
       }
    },
@@ -107,12 +113,13 @@ export default {
 }
 
 .main-text-leave-to{
-   opacity: 0
+   opacity: 0;
+   transform: scale(0.1);
 }
 
 .main-text-enter-active,
 .main-text-leave-active{
-   transition: 1s;
+   transition: 0.6s;
 }
 
 
@@ -129,6 +136,7 @@ export default {
 }
 
 .front-text-2{
+   position: relative;
    font-size: 50px;
    font-weight: bold;
    text-shadow: 0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white;
@@ -141,7 +149,7 @@ export default {
 }
 
 .front-text-3{
-   position: absolute;
+   position: relative;
    width: 150px;
    top: 60%;
    padding: 10px;
@@ -170,23 +178,17 @@ export default {
 
 .main-img-enter-active,
 .main-img-leave-active{
-   transition: all 0.1s;
+   transition: 0.1s;
 }
 
 .main-img-enter{
    opacity: 0;
-}
-
-.main-img-enter-to{
-   opacity: 1;
-}
-
-.main-img-leave{
-   opacity: 1;
+   /* transform: scale(0.5) rotateZ(90deg); */
 }
 
 .main-img-leave-to{
    opacity: 0;
+   /* transform: scale(0.5) rotateZ(-90deg); */
 }
 
 .white{color:white;}
@@ -228,11 +230,12 @@ export default {
    color: grey;
 }
 
-.font-img-full{
+.front-img-full{
    position: relative;
    height: 100%;
    width: 100%;
    object-fit: cover;
+   background-color: transparent;
 }
 
 .img-wrapper{
@@ -245,6 +248,7 @@ export default {
    user-select: none;
    -moz-user-select: none;
    -webkit-user-select: none;
+   background-color: transparent;
 }
 
 .content-wrapper{
