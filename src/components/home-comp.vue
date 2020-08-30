@@ -168,12 +168,41 @@ export default {
    font-weight: bold;
 }
 
+@media only screen and (max-width: 1000px) {
+   .front-text-1{
+      font-size: 50px;
+   }
+
+   .front-text-2{
+      font-size: 30px;
+   }
+
+   .front-text-3{
+      font-size: 18px;
+   }
+}
+
+@media only screen and (max-width: 600px) {
+   .front-text-1{
+      font-size: 30px;
+   }
+
+   .front-text-2{
+      font-size: 15px;
+   }
+
+   .front-text-3{
+      font-size: 12px;
+   }
+}
+
 .front-text-wrap{
    position: absolute;
    top: 10%;
    width: 80%;
    height: 80%;
    left: 10%;
+   line-height: 1.6;
 }
 
 .main-img-enter-active,
