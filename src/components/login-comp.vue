@@ -9,7 +9,7 @@
                <input v-model="setting_name" type="text" @keydown.prevent.space placeholder="New Display Name" />
                <input v-model="setting_phone" type="tel" @keydown.prevent.space placeholder="New Phone Number" />
                <div>
-                  <div class='setting-confirm' @click="update_name()">Confirm</div>
+                  <div class='setting-confirm' @click="update_info()">Confirm</div>
                   <div class='setting-cancel' @click="close_setting()">Cancel</div>
                </div>
             </div>
@@ -101,6 +101,11 @@
             <div>{{ logged.displayName }}</div>
          </div>
 
+         <div class="profile-row">
+            <div>Phone Number: </div>
+            <div>{{ user_phone }}</div>
+         </div>
+
          <div class='profile-row'>
             <div>Unique ID: </div>
             <div>{{ logged.uid }}</div>
@@ -136,7 +141,7 @@ export default {
          message: '',
          display_name: '',
          user_email: '',
-         user_info: [],
+         user_phone: null,
          email_button: true,
          default_img: 'missing_img.png',
          activate_buttons: false,
@@ -154,11 +159,12 @@ export default {
             alert('Email sent');
          });
       },
-      update_name(){
+      update_info(){
          firebase.auth().currentUser.updateProfile({
-            displayName: this.setting_name
+            displayName: this.setting_name,
+            phoneNumber: this.setting_phone
          }).then(()=>{
-            alert('Updae successful.');
+            alert('Update successful.');
             this.open_setting = false;
             this.setting_name = '';
             this.setting_phone = null;
@@ -210,9 +216,6 @@ export default {
          if (e){
             this.show_which = 3;
          }
-      },
-      setting(){
-
       }
    },
    created(){
@@ -220,10 +223,16 @@ export default {
          if (user) {
             this.show_which = 2;
             user.emailVerified ? this.email_button = true : this.email_button = false;
+
+            firebase.firestore().collection(user.uid).get().then( data => {
+               data.forEach( item => {
+                  this.user_phone = item.data().phone;
+               });
+            });
          }
       });
    }
-};
+}
 </script>
 
 <style scoped>

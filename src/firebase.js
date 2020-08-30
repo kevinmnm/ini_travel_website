@@ -63,6 +63,11 @@ export function register_user_func(){
             displayName: this.display_id
          });
       }
+      if (this.phone_number){
+         firebase.firestore().collection(this.logged.uid).set({
+            phone: this.phone_number
+         });
+      }
    }).then(()=>{
       firebase.auth().currentUser.sendEmailVerification(direct_upon).then(()=>{
          alert('Verification email has been sent to: ' + this.new_email + '.');

@@ -99,9 +99,11 @@ export default {
    },
    created(){
       window.addEventListener('resize', this.change_img);
+      window.addEventListener('load', this.change_img);
    },
    destroyed(){
       window.removeEventListener('resize', this.change_img);
+      window.removeEventListener('load', this.change_img);
    },
    mounted(){
 
