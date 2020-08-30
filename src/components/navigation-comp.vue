@@ -8,7 +8,7 @@
       </div>
 
       <div class="menu-wrapper">
-         <router-link :to="{name: 'Plan', params: {id: 'main'}}">
+         <router-link :to="{name: 'Plan', params: {id: 'main'}, hash: '#covid_section'}">
             <div @mouseenter="expand($event)" @mouseleave='collapse($event)'>
                Plan Your Trip
                <div class='expander' >
@@ -19,7 +19,7 @@
             </div>
          </router-link>
 
-         <router-link :to="{name: 'Places', params: {id: 'main'}}">
+         <router-link :to="{name: 'Places', params: {id: 'main'}, hash: '#islands_section'}">
             <div @mouseenter="expand($event)" @mouseleave='collapse($event)'>
                Places To Go
                <div class='expander'>
@@ -30,7 +30,7 @@
             </div>
          </router-link>
 
-         <router-link :to="{name: 'Culture', params: {id: 'main'}}">
+         <router-link :to="{name: 'Culture', params: {id: 'main'}, hash: '#religion_section'}">
             <div @mouseenter="expand($event)" @mouseleave='collapse($event)'>
                Learn The Culture
                <div class='expander'>

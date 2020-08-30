@@ -96,7 +96,7 @@ export default {
                this.main_text_3 = true;
             },1000);
          },1000);
-      },1000);
+      },500);
 
    }
 }

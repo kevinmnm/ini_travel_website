@@ -1,15 +1,15 @@
 <template>
    <div class='content-wrapper'>
       <div class='flex-wrap'>
-         <router-link :to="{name: 'Plan', params: {id: 'main'}}">
+         <router-link :to="{name: 'Plan', params: {id: 'main'}, hash: '#covid_section'}">
             <img :src="require('@/assets/reader.svg')" alt="reader" />
             Plan Your Trip
          </router-link>
-         <router-link :to="{name: 'Places', params: {id: 'main'}}">
+         <router-link :to="{name: 'Places', params: {id: 'main'}, hash: '#islands_section'}">
             <img :src="require('@/assets/umbrella.svg')" alt="umbrella" />
             Places To Go
          </router-link>
-         <router-link :to="{name: 'Culture', params: {id: 'main'}}">
+         <router-link :to="{name: 'Culture', params: {id: 'main'}, hash: '#religion_section'}">
             <img :src="require('@/assets/praying.svg')" alt="praying" />
             Learn The Culture
          </router-link>
