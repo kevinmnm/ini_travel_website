@@ -255,7 +255,7 @@ export default {
    left: 0;
    width: 100%;
    height: 100%;
-   background:rgb(0, 0, 0, 0.9);
+   background:rgb(255, 255, 255, 0.9);
    z-index: 10;
    color: white;
    font-size: 40px;
