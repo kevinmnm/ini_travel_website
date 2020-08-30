@@ -11,7 +11,7 @@
             <transition-group name='main-text'>
                <div class='front-text-1' key='123' v-show='main_text_1'>Welcome to INITRAVEL!</div>
                <div class='front-text-2' key='321' v-show='main_text_2'>This website is built with <span class='vue'>Vue.js</span> as a portfolio project.</div>
-               <div class='front-text-3' key='132' v-show='main_text_3'>GITHUB</div>
+               <div class='front-text-3' key='132' v-show='main_text_3' onclick="window.open('https://github.com/kevinmnm/ini_travel_website')">GITHUB</div>
             </transition-group>
          </div>
 
