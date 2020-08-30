@@ -224,11 +224,18 @@ export default {
             this.show_which = 2;
             user.emailVerified ? this.email_button = true : this.email_button = false;
 
-            firebase.firestore().collection(user.uid).get().then( data => {
-               data.forEach( item => {
-                  this.user_phone = item.data().phone;
-               });
+            firebase.firestore().collection('user-list').doc(user.uid).get().then( datas => {
+               this.user_phone = datas.data().phone;
             });
+
+         /************************** DO NOT DELETE THIS COMMENT ***********************************/
+            // firebase.firestore().collection(user.uid).get().then( datas => {
+            //    datas.docs.forEach( item => {
+            //       this.user_phone = item.data().phone;
+            //    });
+            // });
+         /*****************************************************************************************/
+
          }
       });
    }
