@@ -1,20 +1,29 @@
 <template>
    <div>
       <div class='img-wrapper'>
-
-         <transition name='main-img' mode='out-in'>
+         <transition name='main-img'>
             <img class="font-img-full" v-if="show_img === 1" alt="front-img1" :src="require(`../assets/${img_src1}`)" draggable="false" key="1"/>
             <img class="font-img-full" v-else-if="show_img === 2" alt="front-img2" :src="require(`../assets/${img_src2}`)" draggable="false" key="2" />
             <img class="font-img-full" v-else alt="front-img3" :src="require(`../assets/${img_src3}`)" draggable="false" key="3" />
          </transition>
+
+         <div class='front-text-wrap'>
+            <transition-group name='main-text'>
+               <div class='front-text-1' key='123' v-show='main_text_1'>Welcome to INITRAVEL!</div>
+               <div class='front-text-2' key='321' v-show='main_text_2'>This website is built with <span class='vue'>Vue.js</span> as a portfolio project.</div>
+               <div class='front-text-3' key='132' v-show='main_text_3'>GITHUB</div>
+            </transition-group>
+         </div>
 
          <div class='dots-wrapper'>
             <span :class="{white: circle1}">&#x25CF;</span>
             <span :class="{white: circle2}">&#x25CF;</span>
             <span :class="{white: circle3}">&#x25CF;</span>
          </div>
+
          <div class="arrow-left" @click="prev_img()">&#60;</div>
          <div class="arrow-right" @click="next_img()">&#62;</div>
+
       </div>
 
       <home-content-comp></home-content-comp>
@@ -37,7 +46,10 @@ export default {
          show_img: 1,
          circle1: null,
          circle2: null,
-         circle3: null
+         circle3: null,
+         main_text_1: false,
+         main_text_2: false,
+         main_text_3: false
       }
    },
    methods: {
@@ -67,11 +79,94 @@ export default {
             }
          }
       }
+   },
+   mounted(){
+
+      setTimeout(()=>{
+         this.main_text_1 = true;
+         setTimeout(()=>{
+            this.main_text_2 = true;
+            setTimeout(()=>{
+               this.main_text_3 = true;
+            },1000);
+         },1000);
+      },1000);
+
    }
 }
 </script>
 
 <style scoped>
+
+.main-text-enter{
+   opacity: 0;
+   transform: translateY(-100px);
+}
+.main-text-enter-to{
+   opacity: 1;
+}
+
+.main-text-leave-to{
+   opacity: 0
+}
+
+.main-text-enter-active,
+.main-text-leave-active{
+   transition: 1s;
+}
+
+
+.front-text-1{
+   font-family: 'Balsamiq Sans';
+   /* color: rgb(98, 27, 27); */
+   color: rgb(134, 34, 34);
+   text-shadow: 0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white;
+}
+
+.front-text-1{
+   font-weight: bold;
+   font-size: 70px;
+}
+
+.front-text-2{
+   font-size: 50px;
+   font-weight: bold;
+   text-shadow: 0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white,0 0 30px white;
+   margin-top: 70px;
+   font-family: 'Balsamiq Sans';
+   color: black;
+}
+.vue{
+   color: green;
+}
+
+.front-text-3{
+   position: absolute;
+   width: 150px;
+   top: 60%;
+   padding: 10px;
+   padding-top: 20px;
+   padding-bottom: 20px;
+   left: calc(50% - 75px);
+   font-size: 20px;
+   text-align: center;
+   margin-top: 50px;
+   /* background: rgba(141, 37, 37, 0.404); */
+   text-shadow: 0 0 20px white,0 0 20px white,0 0 20px white,0 0 20px white,0 0 20px white,0 0 20px white,0 0 20px white,0 0 20px white,0 0 20px white,0 0 20px white,0 0 20px white,0 0 20px white;
+   color: black;
+   border-radius: 2px;
+   font-family: 'Nunito', sans-serif;
+   cursor: pointer;
+   font-weight: bold;
+}
+
+.front-text-wrap{
+   position: absolute;
+   top: 10%;
+   width: 80%;
+   height: 80%;
+   left: 10%;
+}
 
 .main-img-enter-active,
 .main-img-leave-active{
