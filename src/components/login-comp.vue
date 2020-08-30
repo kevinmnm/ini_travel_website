@@ -1,16 +1,16 @@
 <template>
    <div class="page-wrapper">
 
-      <img class='setting-icon' :src="require('@/assets/users-cog.svg')" alt="user-cog.svg" />
+      <img class='setting-icon' @click="open_setting = true;" :src="require('@/assets/users-cog.svg')" alt="user-cog.svg" />
 
-      <div class="setting-wrap">
+      <div class="setting-wrap" v-show="open_setting">
             <div class="setting-box">
-               <div>Profile Setting</div>
-               <input type="text" @keydown.prevent.space placeholder="New Display Name" />
-               <input type="tel" @keydown.prevent.space placeholder="New Phone Number" />
+               <div><u>Profile Setting</u></div>
+               <input v-model="setting_name" type="text" @keydown.prevent.space placeholder="New Display Name" />
+               <input v-model="setting_phone" type="tel" @keydown.prevent.space placeholder="New Phone Number" />
                <div>
-                  <div class='setting-confirm' :class="{'buttons-disabled': !activate_buttons}">Confirm</div>
-                  <div class='setting-cancel' :class="{'buttons-disabled': !activate_buttons}">Cancel</div>
+                  <div class='setting-confirm' @click="update_name()">Confirm</div>
+                  <div class='setting-cancel' @click="close_setting()">Cancel</div>
                </div>
             </div>
          </div>
@@ -139,7 +139,10 @@ export default {
          user_info: [],
          email_button: true,
          default_img: 'missing_img.png',
-         activate_buttons: false
+         activate_buttons: false,
+         setting_name: '',
+         setting_phone: null,
+         open_setting: false
       }
    },
    methods: {
@@ -151,7 +154,22 @@ export default {
             alert('Email sent');
          });
       },
+      update_name(){
+         firebase.auth().currentUser.updateProfile({
+            displayName: this.setting_name
+         }).then(()=>{
+            alert('Updae successful.');
+            this.open_setting = false;
+            this.setting_name = '';
+            this.setting_phone = null;
+         });
+      },
 
+      close_setting(){
+         this.open_setting = false;
+         this.setting_name = '',
+         this.setting_phone = null
+      },
       third_provider(e){
          let eti = e.target.innerHTML;
          let provider;
@@ -210,18 +228,21 @@ export default {
 
 <style scoped>
 
-.buttons-disabled{
-   cursor: not-allowed;
-   background: lightGrey !important;
-}
-
 .setting-confirm,
 .setting-cancel{
    width: 190px;
    padding: 10px;
-   background: brown;
+   background: rgb(194, 52, 52);
    border-radius: 5px;
    box-sizing: border-box;
+   margin: 10px !important;
+   user-select: none;
+   cursor: pointer;
+}
+
+.setting-confirm:active,
+.setting-cancel:active{
+   box-shadow: 0 0 5px black inset;
 }
 
 .setting-box div{
@@ -253,7 +274,8 @@ export default {
    margin: auto;
    display: flex;
    flex-direction: column;
-   background: #101010;
+   background: rgb(77, 27, 4);
+   border-radius: 10px;
 }
 
 .setting-icon{
