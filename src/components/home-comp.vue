@@ -102,11 +102,13 @@ export default {
       window.addEventListener('resize', this.change_img);
       window.addEventListener('load', this.change_img);
 
-      this.img_interval = setInterval(this.next_img, 8000);
+      this.img_interval = setInterval(this.next_img, 10000);
    },
    destroyed(){
       window.removeEventListener('resize', this.change_img);
       window.removeEventListener('load', this.change_img);
+
+      clearInterval(this.img_interval);
    },
    mounted(){
 
