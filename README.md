@@ -12,7 +12,13 @@ sometext
 <a name="resources"></a>
 ## Resources Used
 - Vue.js
-  - sdfsdf
+  - Vue CLI
+  - Vue Router
+  - Vuex
+- Firebase
+  - Authentication
+  - Cloud Firestore
+  - Cloud Storage
 
 sometext
 ## Project setup
