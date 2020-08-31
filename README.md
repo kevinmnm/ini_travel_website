@@ -1,16 +1,18 @@
 # **Initravel Website**
 
 ## Table of Contents
-- [ Description ](#)
-- [ Resources Used ](#usage)
+- [ Description ](#desc)
+- [ Resources Used ](#resources)
 
 <a name="desc"></a>
 ## Description
 
 sometext
 
-<a name="usage"></a>
+<a name="resources"></a>
 ## Resources Used
+- Vue.js
+  - sdfsdf
 
 sometext
 ## Project setup
