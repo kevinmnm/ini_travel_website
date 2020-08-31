@@ -6,8 +6,14 @@
 
 <a name="desc"></a>
 ## Description
-
-sometext
+This project is implemented with all necessary segments that real-world websites possess today.
+- Responsive design.
+- Lazy loading for faster page loads.
+- User account creation.
+- 3rd party provider log-in with Google, Facebook, etc.
+- Email verification.
+- Real-time data (AJAX API).
+- Database to store user data.
 
 <a name="resources"></a>
 ## Resources Used
@@ -20,7 +26,6 @@ sometext
   - Cloud Firestore
   - Cloud Storage
 
-sometext
 ## Project setup
 ```
 npm install
