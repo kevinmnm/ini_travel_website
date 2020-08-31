@@ -4,16 +4,16 @@
       <img class='setting-icon' @click="open_setting = true;" :src="require('@/assets/users-cog.svg')" alt="user-cog.svg" />
 
       <div class="setting-wrap" v-show="open_setting">
-            <div class="setting-box">
-               <div><u>Profile Setting</u></div>
-               <input v-model="setting_name" type="text" @keydown.prevent.space placeholder="New Display Name" />
-               <input v-model="setting_phone" type="tel" @keydown.prevent.space placeholder="New Phone Number" />
-               <div>
-                  <div class='setting-confirm' @click="update_info()">Confirm</div>
-                  <div class='setting-cancel' @click="close_setting()">Cancel</div>
-               </div>
+         <div class="setting-box">
+            <div><u>Profile Setting</u></div>
+            <input v-model="setting_name" type="text" @keydown.prevent.space placeholder="New Display Name" />
+            <input v-model="setting_phone" type="tel" @keydown.prevent.space placeholder="New Phone Number" />
+            <div>
+               <div class='setting-confirm' @click="update_info()">Confirm</div>
+               <div class='setting-cancel' @click="close_setting()">Cancel</div>
             </div>
          </div>
+      </div>
 
       <div v-if='show_which === 1'>
          <img src="../assets/logo.png" @click="setting()" alt="logo img" />
@@ -74,10 +74,25 @@
          <router-link class='backb' :to="{name: 'Home'}">&#8630; Back to Home</router-link>
          <h1>{{ display_name || user_email }}</h1>
 
+         <div class='upload-img-wrap' v-show='change_img'>
+            <div class='upload-img'>
+               <div class='close-upload-img-wrap' @click='close_img()'>x</div>
+               <div class='upload-img-title'>Upload New Image (200 x 200)</div>
+               <div class='progress-bar'>
+                  <div class='filler-text'>{{ progress_fill + '%' }}</div>
+                  <div class='bar-filler' :style="{'width': progress_fill + '%'}"></div>
+               </div>
+               <input type='file' @change='upload_img($event)' class='img-uploader' name='img' accept='image/*' />
+               <div class='done-button' v-show='show_done' @click='close_img()'>Done</div>
+            </div>
+         </div>
+
          <h2><u>Profile</u></h2>
          <img class="profile-img"
           :src="logged.photoURL ? logged.photoURL : require(`@/assets/${default_img}`)"
-           alt="Profile img" /> 
+           alt="Profile img" 
+           @click='change_img = true;' 
+           draggable='false' /> 
 
          <button class='dash-logout' @click='send_email()' v-show="!email_button">Verify Email</button>
 
@@ -147,12 +162,41 @@ export default {
          activate_buttons: false,
          setting_name: '',
          setting_phone: null,
-         open_setting: false
+         open_setting: false,
+         progress_fill: 0,
+         change_img: false,
+         show_done: false
       }
    },
    methods: {
       signOut: signOut_func,
+      
+      close_img(){
+         this.change_img = false;
+      },
+      upload_img(e){
+         let file = e.target.files[0];
+         console.log(this.logged);
+         console.log(this.logged.uid);
+         console.log(file);
+         let storage_ref = firebase.storage().ref().child('user-list/' + this.logged.uid + '/img/' + file.name);
 
+         storage_ref.put(file).then(snapshot => {
+            console.log(snapshot);
+         });
+
+         storage_ref.put(file).on('state_changed', snapshot => {
+            this.progress_fill = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+         });
+
+         // uploading.on('state_changed', function(snapshot){
+         //    this.progress_fill = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+         //    console.log((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+         // }, function(){
+         //     alert('success');
+         // });
+      },
       send_email(){
          firebase.auth().currentUser.sendEmailVerification()
          .then(()=>{
@@ -225,6 +269,15 @@ export default {
          }
       }
    },
+   watch: {
+      progress_fill(){
+         if (this.progress_fill === 100){
+            this.show_done = true;
+         } else {
+            this.show_done = false;
+         }
+      }
+   },
    created(){
       firebase.auth().onAuthStateChanged( user => {
          if (user) {
@@ -250,6 +303,98 @@ export default {
 </script>
 
 <style scoped>
+
+.close-upload-img-wrap{
+   font-size: 40px;
+   position: absolute;
+   top: 5px;
+   right: 15px;
+   color: black;
+   cursor: pointer;
+   user-select: none;
+}
+.close-upload-img-wrap:hover{
+   color: brown;
+}
+
+.done-button{
+   font-size: 20px;
+   padding: 3px;
+   border: 1px solid black;
+   width: 200px;
+   position: relative;
+   margin: 100px auto 0;
+   cursor: pointer;
+   user-select: none;
+}
+.done-button:hover{
+   background: black;
+   color: white;
+}
+
+.filler-text{
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 100%;
+   width: 100%;
+   z-index: 1;
+   text-align: center;
+}
+
+.bar-filler{
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 100%;
+   background: brown;
+   text-align: center;
+   color: black;
+}
+
+.upload-img-title{
+   font-size: 30px;
+   border: 1px solid brown;
+}
+
+.upload-img{
+   position: relative;
+   top: 5%;
+   display: flex;
+   margin: auto;
+   width: 85%;
+   height: 90%;
+   background: white;
+   overflow: auto;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.upload-img-wrap{
+   position: fixed;
+   z-index: 10;
+   background: rgb(0,0,0,0.7);
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+}
+
+.img-uploader{
+   display: block;
+   width: 300px;
+   background: grey;
+}
+
+.progress-bar{
+   position: relative;
+   height: 35px;
+   width: 250px;
+   box-sizing: border-box;
+   border: 1px solid brown;
+   margin: 30px auto 30px;
+   font-size: 30px;
+}
 
 .setting-confirm,
 .setting-cancel{
@@ -607,5 +752,6 @@ img {
    position: relative;
    width: 150px;
    height: 150px;
+   cursor: pointer;
 }
 </style>
