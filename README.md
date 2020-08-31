@@ -1,6 +1,6 @@
-# initravel
+# Initravel Website
 
-# wefwef
+## wefwef
 
 ## Project setup
 ```
