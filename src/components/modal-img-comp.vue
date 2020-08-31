@@ -2,7 +2,7 @@
   <div class='modal-img-wrap'>
       <div class='img-flex'>
          <div class='img-wrap' @click.self="zoom_out($event)" v-for="all in imgs" :key='all.file'>
-            
+
             <img 
             @click.self="zoom_in($event)" 
             class='imgs' 

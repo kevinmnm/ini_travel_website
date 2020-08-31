@@ -49,7 +49,8 @@ export default {
          circle3: null,
          main_text_1: false,
          main_text_2: false,
-         main_text_3: false
+         main_text_3: false,
+         img_interval: null
       }
    },
    methods: {
@@ -100,6 +101,8 @@ export default {
    created(){
       window.addEventListener('resize', this.change_img);
       window.addEventListener('load', this.change_img);
+
+      this.img_interval = setInterval(this.next_img, 8000);
    },
    destroyed(){
       window.removeEventListener('resize', this.change_img);
