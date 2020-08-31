@@ -46,7 +46,7 @@ var actionCodeSettings = {
 // }
 
 let direct_upon = {
-   url: 'http://localhost:8080/login',
+   url: 'https://kevsong.com/projects/Initravel/index.html',
    handleCodeInApp: true
  };
 
