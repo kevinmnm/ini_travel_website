@@ -1,4 +1,6 @@
 # **Initravel Website**
+This website is built solely with Vue.js. Its content (travel guide) may not be perfect, but its functionalities are on point.
+
 
 ## Table of Contents
 - [ Description ](#desc)
