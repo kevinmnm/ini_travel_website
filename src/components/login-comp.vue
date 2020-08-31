@@ -165,29 +165,38 @@ export default {
          open_setting: false,
          progress_fill: 0,
          change_img: false,
-         show_done: false
+         show_done: false,
+         uploading_file: null,
+         file_name: ''
       }
    },
    methods: {
       signOut: signOut_func,
       
       close_img(){
+         // let x = firebase.storage().ref('user-list/' + this.logged.uid + '/img' + this.file_name);
+         // console.log(x.location.path);
          this.change_img = false;
+         this.uploading_file = null;
       },
       upload_img(e){
          let file = e.target.files[0];
-         console.log(this.logged);
-         console.log(this.logged.uid);
-         console.log(file);
+         this.uploading_file = e.target.files[0];
+
          let storage_ref = firebase.storage().ref().child('user-list/' + this.logged.uid + '/img/' + file.name);
 
+         //firebase.auth().currentUser.photoURL = this.storage_ref;
+
          storage_ref.put(file).then(snapshot => {
-            console.log(snapshot);
+            snapshot.ref.getDownloadURL().then( url => {
+               firebase.auth().currentUser.photoURL = url;
+               console.log(url);
+               localStorage.setItem('profile_img', file.name);
+            });
          });
 
          storage_ref.put(file).on('state_changed', snapshot => {
             this.progress_fill = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
          });
 
          // uploading.on('state_changed', function(snapshot){
@@ -296,6 +305,13 @@ export default {
             // });
          /*****************************************************************************************/
 
+         }
+
+         if (localStorage.profile_img){
+            console.log(localStorage.profile_img);
+            let x = firebase.storage().ref().child('user-list/' + user.uid + '/img/' + localStorage.profile_img);
+            user.photoURL = x;
+            console.log('asdfas' + x);
          }
       });
    }
