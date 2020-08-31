@@ -1,16 +1,16 @@
 # **Initravel Website**
 
-## wefwef
-1. [ Description. ](#desc)
-2. [ Usage tips. ](#usage)
+## Table of Contents
+- [ Description ](#)
+- [ Resources Used ](#usage)
 
 <a name="desc"></a>
-## 1. Description
+## Description
 
 sometext
 
 <a name="usage"></a>
-## 2. Usage tips
+## Resources Used
 
 sometext
 ## Project setup
