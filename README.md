@@ -4,7 +4,7 @@ This website is built solely with Vue.js. Its content (travel guide) may not be 
 
 ## Table of Contents
 - [ Description ](#desc)
-- [ Resources Used ](#resources)
+- [ Resources ](#resources)
 
 <a name="desc"></a>
 ## Description
@@ -18,7 +18,7 @@ This project is implemented with all necessary segments that real-world websites
 - Database to store user data.
 
 <a name="resources"></a>
-## Resources Used
+## Resources
 - Vue.js
   - Vue CLI
   - Vue Router
