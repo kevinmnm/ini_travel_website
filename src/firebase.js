@@ -64,7 +64,7 @@ export function register_user_func(){
          });
       }
       if (this.phone_number){
-         firebase.firestore().collection(this.logged.uid).set({
+         firebase.firestore().collection('user-list').data(this.uid).set({
             phone: this.phone_number
          });
       }

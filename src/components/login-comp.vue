@@ -161,8 +161,15 @@ export default {
       },
       update_info(){
          firebase.auth().currentUser.updateProfile({
-            displayName: this.setting_name,
-            phoneNumber: this.setting_phone
+            displayName: this.setting_name
+         }).then(()=>{
+            firebase.firestore().collection('user-list').doc(this.logged.uid).set({
+               phone: this.setting_phone
+            }).then(()=>{
+               firebase.firestore().collection('user-list').doc(this.logged.uid).get().then( data =>{
+                  this.user_phone = data.data().phone;
+               });
+            });
          }).then(()=>{
             alert('Update successful.');
             this.open_setting = false;
