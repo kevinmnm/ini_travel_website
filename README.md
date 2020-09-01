@@ -38,6 +38,8 @@ This project took me about 10 days to complete. During the development period, a
 
 As I'm using `Router History Mode`, and as this project is hosted through Hostinger under my main (portfolio) website, I needed to configure `publicPath` to indicate server fallback to `index.html`. This new concept wasn't too much of a hassle as I followed [Vue deployment documentation](https://cli.vuejs.org/guide/deployment.html#deployment) to add vue.config.js.
 
+The real problem though, emerged when I landed on [this](https://router.vuejs.org/guide/essentials/history-mode.html#html5-history-mode) part of documentation where I had to add `.htaccess` file in the root folder of this project. Having ZERO knowledge on Apache nor its `.htaccess` syntax, it took me 2 whole days to finally configured as desired. (I had no luck with Stack Overflow either 😥). After numerous trial and error, [here](https://codepen.io/kevinmnm/pen/ZEWJdWO) is the final syntax that worked for my project.
+
 ## Project setup
 ```
 npm install
