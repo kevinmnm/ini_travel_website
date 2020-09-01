@@ -1,6 +1,4 @@
 # **Initravel Website**
-This website is built solely with Vue.js. Its content (travel guide) may not be perfect, but its functionalities are on point.
-
 
 ## Table of Contents
 - [ Description ](#desc)
@@ -8,7 +6,7 @@ This website is built solely with Vue.js. Its content (travel guide) may not be 
 
 <a name="desc"></a>
 ## Description
-This project is implemented with all necessary segments that real-world websites possess today.
+This project is an Indonesia Travel Guide website built with Vue.js. This website isn't necessarily focused on its descriptive contents, but the UI/UX & functionalites that a website should be acquainted with. Below is a list of some functionalites implemented to this project.
 - Responsive design.
 - Lazy loading for faster page loads.
 - User account creation (Firebase).
