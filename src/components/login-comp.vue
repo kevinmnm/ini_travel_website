@@ -375,7 +375,6 @@ export default {
 
 .upload-img-title{
    font-size: 30px;
-   border: 1px solid brown;
 }
 
 .upload-img{

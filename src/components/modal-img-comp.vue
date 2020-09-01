@@ -80,6 +80,7 @@ export default {
             zoom_in[i].classList.add('img-wrap');
             zoom_in[i].classList.remove('zoom-in');
          }
+         this.close_x = false;
       },
       scroll_trigger(){
          this.img_el = document.querySelector('.img-wrap');

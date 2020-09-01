@@ -1,7 +1,7 @@
 <template>
    <div class='attractions-section'>
       <div class='attractions-title'><u>Attractions</u></div>
-      <code class='attractions-source'>Content source: planetware.com</code>
+      <!-- <code class='attractions-source'>Content source: planetware.com</code> -->
       <br>
       <div class='attractions-content' v-for="all in attractions" :key="all.des">
          <div class='attractions-content-title'>{{ all.name }}</div>
