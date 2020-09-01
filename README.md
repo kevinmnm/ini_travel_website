@@ -32,10 +32,11 @@ This project is an Indonesia Travel Guide website built with Vue.js. This websit
 
 <a name="bug_fix"></a>
 ## Bug Fix
-This project took me about 10 days to complete. During the development period, a large amount of time was spent for some unfamiliar bug fixes. Among many bugs I faced, there were 2 marjor bugs I experienced with this project that took **arduous** amount of debugging.
+This project took me about 10 days to complete. During the development period, a large amount of time was spent for some unfamiliar bug fixes. Among many bugs I faced, there are 2 marjor bugs I experienced with this project that took **arduous** amount of debugging.
 
 **1) Apache Server Configuration**
-As I'm using `Router History Mode`, I needed to 
+
+As I'm using `Router History Mode`, and as this project is hosted through Hostinger under my main (portfolio) website, I needed to configure `publicPath` to indicate server fallback to `index.html`. This new concept wasn't too much of a hassle as I followed [Vue deployment documentation](https://cli.vuejs.org/guide/deployment.html#deployment) to add vue.config.js.
 
 ## Project setup
 ```
