@@ -1,6 +1,7 @@
 <template>
   <div class='modal-img-wrap'>
       <div class='img-flex'>
+         <div class='close-modal-img' @click.self="close_out()" v-show='close_x'>X</div>
          <div class='img-wrap' @click.self="zoom_out($event)" v-for="all in imgs" :key='all.file'>
 
             <img 
@@ -47,7 +48,8 @@ export default {
          imgs_top: null,
          fade_in: false,
          img_el: null,
-         imgs_rect: null
+         imgs_rect: null,
+         close_x: false
       }
    },
    methods: {
@@ -57,6 +59,7 @@ export default {
          e.target.classList.remove('imgs');
          e.target.parentNode.classList.remove('img-wrap');
          document.body.style.overflow = 'hidden';
+         this.close_x = true;
       },
       zoom_out(e){ //Applying to img-wrap
          e.target.classList.add('img-wrap');
@@ -64,6 +67,19 @@ export default {
          e.target.classList.remove('zoom-in');
          e.target.childNodes[0].classList.remove('zoom-in-img');
          document.body.style.overflow = 'auto';
+         this.close_x = false;
+      },
+      close_out(){
+         let zoom_in_img = document.querySelectorAll('.zoom-in-img');
+         let zoom_in = document.querySelectorAll('.zoom-in');
+         document.body.style.overflow = 'auto';
+
+         for (let i=0; i<zoom_in.length; i++){
+            zoom_in_img[i].classList.add('imgs');
+            zoom_in_img[i].classList.remove('zoom-in-img');
+            zoom_in[i].classList.add('img-wrap');
+            zoom_in[i].classList.remove('zoom-in');
+         }
       },
       scroll_trigger(){
          this.img_el = document.querySelector('.img-wrap');
@@ -87,6 +103,22 @@ export default {
 </script>
 
 <style scoped>
+
+.close-modal-img{
+   position: fixed;
+   top: 10px;
+   right: 10px;
+   z-index: 6;
+   font-size: 30px;
+   cursor: pointer;
+   color: white;
+   font-weight: bold;
+   text-shadow: 0 0 5px black;
+}
+
+.close-modal-img:hover{
+   color: red;
+}
 
 .opacity-0{
    opacity: 0;
@@ -130,7 +162,6 @@ export default {
    .img-wrap{
       position: relative;
       width: 90%;
-      border: 1px solid green;
       text-align: center;
    }
    .imgs{
@@ -181,7 +212,7 @@ export default {
    height: 877px; */
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 700px) {
    .zoom-in-img{
       width: 90%;
       height: 90%;
