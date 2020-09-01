@@ -89,10 +89,10 @@
 
          <h2><u>Profile</u></h2>
          <img class="profile-img"
-          :src="logged.photoURL ? logged.photoURL : require(`@/assets/${default_img}`)"
-           alt="Profile img" 
-           @click='change_img = true;' 
-           draggable='false' /> 
+            :src="logged.photoURL ? logged.photoURL : require(`@/assets/${default_img}`)" 
+            alt="Profile img" 
+            @click='change_img = true;' 
+            draggable='false' /> 
 
          <button class='dash-logout' @click='send_email()' v-show="!email_button">Verify Email</button>
 
@@ -167,8 +167,8 @@ export default {
          change_img: false,
          show_done: false,
          uploading_file: null,
-         file_name: '',
          setting_cog: false
+         //photo_src: ''
       }
    },
    methods: {
@@ -315,10 +315,24 @@ export default {
             console.log(localStorage.profile_img);
             let x = firebase.storage().ref().child('user-list/' + user.uid + '/img/' + localStorage.profile_img);
             user.photoURL = x;
-            console.log('asdfas' + x);
+            //this.photo_src = x;
          }
+            
+         //    this.pohoto_src = x;
+         //    user.photoURL = x;
+         //    return 
+         // } else if (this.logged.photoURL){
+         //    this.photo_src = this.logged.photoURL;
+         //    return
+         // } else {
+         //    this.photo_src = 'require(`@/assets/${default_img}`)'
+         // }
+
+
+         // logged.photoURL ? logged.photoURL : require(`@/assets/${default_img}`)
 
       });
+
    }
 }
 </script>

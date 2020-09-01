@@ -7,7 +7,7 @@
          <router-link :to="{name: 'Policy', params: {id: 'privacy'}, hash: '#privacy_section'}">Privacy Policy</router-link> |
          <router-link :to="{name: 'Policy', params: {id: 'terms'}, hash: '#terms_section'}">Terms and Conditions</router-link> |
          <router-link :to="{name: 'Policy', params: {id: 'contact'}, hash: '#contact_section'}">Contact Us</router-link>
-      </div><br>
+      </div>
       <div class='dev' onclick="window.open('https://github.com/kevinmnm/ini_travel_website')">Designed & Built By Kevin Song</div>
    </div>
 </template>
@@ -77,6 +77,8 @@ img{
 .dev{
    color: grey;
    cursor: pointer;
+   font-size: 15px;
+   margin-top: 15px;
 }
 .dev:hover{color:white;}
 </style>
