@@ -10,6 +10,7 @@
 <a name="desc"></a>
 ## Description
 This project is an Indonesia Travel Guide website built with Vue.js. This website isn't necessarily focused on its descriptive contents, but the UI/UX & functionalites that a website should be acquainted with. Below is a list of some functionalites implemented to this project.
+- Real-time data (AJAX API).
 - Responsive design.
 - Lazy loading for faster page loads.
 - User account creation (Firebase).
@@ -17,7 +18,6 @@ This project is an Indonesia Travel Guide website built with Vue.js. This websit
 - Scroll behavior.
 - 3rd party provider log-in with Google, Facebook, etc.
 - Email verification.
-- Real-time data (AJAX API).
 - Database to store user data (Firebase).
 
 <a name="resources"></a>
