@@ -4,6 +4,8 @@
 ## Table of Contents
 - [ Description ](#desc)
 - [ Resources ](#resources)
+- [ Bug Fix ](#bug_fix)
+- [ License ](#license)
 
 <a name="desc"></a>
 ## Description
@@ -47,6 +49,7 @@ The real problem though, emerged when I landed on [this](https://router.vuejs.or
 
 I inteded to remote default underline implemented in `router-link`. After numerous trial & error, I finally asked Stack Overflow to find out that the real issue was CSS `display`. [Here](https://stackoverflow.com/questions/63526678/cannot-remove-underline-from-vue-router-link/63527152?noredirect=1#comment112335377_63527152) is my Stack Overflow question. 
 
+<a name="license"></a>
 ## License
 
 MIT
