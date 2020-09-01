@@ -1,7 +1,7 @@
 <template>
    <div class="page-wrapper">
 
-      <img class='setting-icon' @click="open_setting = true;" :src="require('@/assets/users-cog.svg')" alt="user-cog.svg" />
+      <img class='setting-icon' @click="open_setting = true;" :src="require('@/assets/users-cog.svg')" alt="user-cog.svg" v-show="setting_cog" />
 
       <div class="setting-wrap" v-show="open_setting">
          <div class="setting-box">
@@ -167,7 +167,8 @@ export default {
          change_img: false,
          show_done: false,
          uploading_file: null,
-         file_name: ''
+         file_name: '',
+         setting_cog: false
       }
    },
    methods: {
@@ -297,6 +298,7 @@ export default {
                this.user_phone = datas.data().phone;
             });
 
+            this.setting_cog = true;
          /************************** DO NOT DELETE THIS COMMENT ***********************************/
             // firebase.firestore().collection(user.uid).get().then( datas => {
             //    datas.docs.forEach( item => {
@@ -305,6 +307,8 @@ export default {
             // });
          /*****************************************************************************************/
 
+         } else {
+            this.setting_cog = false;
          }
 
          if (localStorage.profile_img){
@@ -313,6 +317,7 @@ export default {
             user.photoURL = x;
             console.log('asdfas' + x);
          }
+
       });
    }
 }
