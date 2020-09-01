@@ -1,5 +1,5 @@
 # **Initravel Website**
-![Initravel Image](http://prntscr.com/u9w3xv)
+> Indonesia Travel Guide Website Project
 
 ## Table of Contents
 - [ Description ](#desc)
@@ -46,6 +46,10 @@ The real problem though, emerged when I landed on [this](https://router.vuejs.or
 ### **2) Customizing `router-link` Style**
 
 I inteded to remote default underline implemented in `router-link`. After numerous trial & error, I finally asked Stack Overflow to find out that the real issue was CSS `display`. [Here](https://stackoverflow.com/questions/63526678/cannot-remove-underline-from-vue-router-link/63527152?noredirect=1#comment112335377_63527152) is my Stack Overflow question. 
+
+## License
+
+MIT
 
 ## Project setup
 ```
