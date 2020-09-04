@@ -24,9 +24,9 @@ This project is an Indonesia Travel Guide website built with Vue.js. This websit
 ## Resources
 - Vue.js
   - Vue CLI
-  - Vue Router (History Mode)
+  - Vue Router + History Mode
   - Vue Transition & Animation
-  - Babel-Eslint
+  - Vuex
 - Firebase
   - Authentication
   - Cloud Firestore
